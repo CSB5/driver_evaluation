@@ -138,24 +138,24 @@ The methods were evaluated on how well their patient-specific predictions identi
 
 The following files contain the evaluation using the top 5 (top 3 and top 10) predictions:
 
-*sample_precision_RANK_5.dat    
+**sample_precision_RANK_5.dat:**    
 	Matrix (column: method, row: sample ID) where a cell represents the precision
 
-*sample_recall_RANK_5.dat       
+**sample_recall_RANK_5.dat:**       
 	Matrix (column: method, row: sample ID) where a cell represents the recall
 
-*sample_F1_RANK_5.dat           
+**sample_F1_RANK_5.dat:**           
 	Matrix (column: method, row: sample ID) where a cell represents the F1 score
 
 # Prediction of actionable genes
-sample_actionable_profile_5_all.dat              
+**sample_actionable_profile_5_all.dat:**              
 	Matrix (column: method, row: sample ID) where a cells represent the precision
 
-sample_actionable_profile_5_cancer_type.dat      
+**sample_actionable_profile_5_cancer_type.dat:**      
 	Matrix (column: method, row: cancer type) where a cells represent the fraction of patients with a predicted actionable gene
 
 ## Additional files
-*driver_number.dat        
+**driver_number.dat:**        
 	Matrix (column: method, row: cancer type) where a cell represents the number of drivers predicted
 
 Contact:
