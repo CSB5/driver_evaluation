@@ -88,7 +88,9 @@ selected_method_file=path_to/driver_evaluation/TEST_DATA_SET/extra_methods.txt
 
  ------------------------
 
---> The file <extra_methods.txt> contains additional methods that you want to introduce to this run. Notice that the method name should be the same as the one of the one use for EVALUATION_DATA_SET/RESULTS/CANCER_TYPE/method_name.result
+--> The file <extra_methods.txt> contains additional methods that you want to introduce to this run. 
+
+Notice that the method name should be the same as the one of the one use for EVALUATION_DATA_SET/RESULTS/CANCER_TYPE/method_name.result
 
 
 # How to do a test run
