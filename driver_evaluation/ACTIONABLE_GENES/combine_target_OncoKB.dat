@@ -1,0 +1,34 @@
+KIT	1	Imatinib;Nilotinib, Sorafenib;Imatinib;Imatinib;Imatinib;Sunitinib;Regorafenib, Sunitinib, Imatinib;Imatinib;Sunitinib;Nilotinib, Dasatinib;Nilotinib;Sunitinib, Imatinib;Imatinib;Imatinib;Sunitinib, Imatinib;Sorafenib;Nilotinib;Imatinib;Nilotinib, Dasatinib, Sorafenib;Imatinib;Regorafenib, Sunitinib;Imatinib;Sunitinib;Dasatinib, Sorafenib;Dasatinib;Dasatinib;Nilotinib, Sorafenib;Nilotinib;Regorafenib;Sunitinib, Imatinib;Sunitinib;Imatinib;Imatinib;Imatinib;Imatinib;Imatinib;Imatinib;Nilotinib, Sorafenib;Regorafenib;Regorafenib, Sunitinib, Imatinib;Imatinib;Sunitinib;Dasatinib;Imatinib;Nilotinib;Sunitinib;Sunitinib;Sunitinib, Imatinib;Imatinib;Sorafenib;Imatinib;Sunitinib, Imatinib;Regorafenib, Sunitinib, Imatinib;Imatinib;Sunitinib;Nilotinib, Dasatinib;Regorafenib, Sunitinib, Imatinib;Imatinib;Regorafenib;Imatinib;Regorafenib, Sunitinib, Imatinib;Imatinib;Imatinib;Imatinib;Dasatinib;Imatinib;Sunitinib, Imatinib;Imatinib	OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB
+RAF1	3	Sorafenib	OncoKB
+MDM2	3	SAR405838	OncoKB
+BRCA1	1	Olaparib	OncoKB
+NRAS	2	Selumetinib + Radioiodine Uptake Therapy;Ribociclib + binimetinib, binimetinib	OncoKB;OncoKB
+CDK4	1	Palbociclib	OncoKB
+CDKN2A	3	Palbociclib + Letrozole;Palbociclib	OncoKB;OncoKB
+KRAS	3	Selumetinib + Docetaxel	OncoKB
+MTOR	2	Everolimus	OncoKB
+BRAF	1	Vemurafenib, Dabrafenib, Dabrafenib + Trametinib;Vemurafenib, Dabrafenib, Dabrafenib + Trametinib;Vemurafenib;Vemurafenib, Dabrafenib, Dabrafenib + Trametinib, Vemurafenib + Cobimetinib, Trametinib;Vemurafenib;Vemurafenib, Dabrafenib, Dabrafenib + Trametinib, Vemurafenib + Cobimetinib, Trametinib;Vemurafenib;Vemurafenib;Vemurafenib;Vemurafenib;Vemurafenib, Dabrafenib, Dabrafenib + Trametinib, Vemurafenib + Cobimetinib;Vemurafenib, Dabrafenib, Dabrafenib + Trametinib;Vemurafenib, Dabrafenib, Dabrafenib + Trametinib, Vemurafenib + Cobimetinib;Vemurafenib, Dabrafenib, Dabrafenib + Trametinib, Vemurafenib + Cobimetinib;Vemurafenib, Dabrafenib, Dabrafenib + Trametinib, Vemurafenib + Cobimetinib;Vemurafenib, Dabrafenib, Dabrafenib + Trametinib;Vemurafenib, Dabrafenib, Dabrafenib + Trametinib;Vemurafenib, Dabrafenib, Dabrafenib + Trametinib	OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB
+MAP2K1	2	Cobimetinib, Selumetinib, Trametinib;Cobimetinib, Selumetinib, Trametinib;Cobimetinib, Selumetinib, Trametinib;Cobimetinib, Selumetinib, Trametinib	OncoKB;OncoKB;OncoKB;OncoKB
+EGFR	1	Afatinib, Erlotinib, Gefitinib;Erlotinib, Afatinib, Gefitinib;Afatinib, Erlotinib, Gefitinib;Erlotinib, Afatinib, Gefitinib;Afatinib, Erlotinib, Gefitinib;Gefitnib, Afatinib, Erlotinib;Afatinib, Erlotinib, Gefitinib;Erlotinib, Afatinib, Gefitinib;Osimertinib;Afatinib, Erlotinib, Gefitinib;Erlotinib, Afatinib, Gefitinib;Afatinib, Erlotinib, Gefitinib	OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB
+PTCH1	2	Sonidegib;Sonidegib, Vismodegib	OncoKB;OncoKB
+AKT1	2	AZD5363;AZD5363	OncoKB;OncoKB
+ROS1	2	Cabozantinib	OncoKB
+PDGFRA	1	Imatinib;Imatinib;Imatinib;Imatinib;Imatinib;Imatinib;Imatinib;Imatinib;Imatinib;Imatinib;Imatinib;Imatinib;Imatinib;Dasatinib;Imatinib;Imatinib;Imatinib;Imatinib;Imatinib;Imatinib;Imatinib;Imatinib;Imatinib;Imatinib;Imatinib;Imatinib;Imatinib;Imatinib;Imatinib;Imatinib;Imatinib;Imatinib;Imatinib;Imatinib	OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB
+FGFR1	2	AZD4547;Dovitinib	OncoKB;OncoKB
+MET	1	Crizotinib;Crizotinib;Crizotinib;Crizotinib;Crizotinib;Crizotinib;Crizotinib;Crizotinib;Crizotinib	OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB;OncoKB
+ERCC2	2	Cisplatin	OncoKB
+TSC1	1	Everolimus	OncoKB
+PIK3CA	2	alpelisib	OncoKB
+BRCA2	1	Olaparib	OncoKB
+FLT3	2	Sorafenib	OncoKB
+ALK	2	Brigatinib;Brigatinib	OncoKB;OncoKB
+EZH2	3	Tazemetostat, GSK126	OncoKB
+PTEN	3	LY3023414 + Enzalutamide;Olaparib;AZD8186	OncoKB;OncoKB;OncoKB
+ARAF	2	Sorafenib;Sorafenib	OncoKB;OncoKB
+TSC2	1	Everolimus	OncoKB
+IDH1	2	AG-120;AG-120;AG-120;AG-120	OncoKB;OncoKB;OncoKB;OncoKB
+FGFR2	2	Dovitinib	OncoKB
+ESR1	3	GDC-0810;GDC-0810	OncoKB;OncoKB
+ERBB2	1	ado-trastuzumab emtansine, Pertuzumab + Trastuzumab, Lapatinib, Trastuzumab;Trastuzumab	OncoKB;OncoKB
+IDH2	2	AG-221	OncoKB
+NF1	3	Trametinib;Trametinib;PLX3397, binimetinib	OncoKB;OncoKB;OncoKB

@@ -1,0 +1,16 @@
+Table S2B.  Driver genes affected by amplification or homozygous deletion*					
+Gene Symbol	Gene Name	Genetic alteration	Classification 	Core pathway	Process
+CCND1	cyclin D1	Amplification	Oncogene	Cell Cycle/Apoptosis	Cell Survival
+CDKN2C	cyclin-dependent kinase inhibitor 2C (p18, inhibits CDK4)	Homozygous deletion	TSG	Cell Cycle/Apoptosis	Cell Survival
+IKZF1	IKAROS family zinc finger 1 (Ikaros)	Homozygous deletion	TSG	Transcriptional Regulation	Cell Fate
+LMO1	LIM domain only 1 (rhombotin 1)	Amplification	Oncogene	Transcriptional Regulation	Cell Fate
+MAP2K4	mitogen-activated protein kinase kinase 4	Homozygous deletion	TSG	 MAPK	Cell Survival
+MDM2	Mdm2 p53 binding protein homolog (mouse)	Amplification	Oncogene	Cell Cycle/Apoptosis	Cell Survival
+MDM4	Mdm4 p53 binding protein homolog (mouse)	Amplification	Oncogene	Cell Cycle/Apoptosis	Cell Survival
+MYC	v-myc myelocytomatosis viral oncogene homolog (avian)	Amplification	Oncogene	Cell Cycle/Apoptosis	Cell Survival
+MYCL1	v-myc myelocytomatosis viral oncogene homolog 1, lung carcinoma derived (avian)	Amplification	Oncogene	Cell Cycle/Apoptosis	Cell Survival
+MYCN	v-myc myelocytomatosis viral related oncogene, neuroblastoma derived (avian)	Amplification	Oncogene	Cell Cycle/Apoptosis	Cell Survival
+NCOA3	nuclear receptor coactivator 3	Amplification	Oncogene	Chromatin Modification	Cell Fate
+NKX2-1	NK2 homeobox 1	Amplification	Oncogene	PI3K; MAPK	Cell Survival
+SKP2	S-phase kinase-associated protein 2 (p45)	Amplification	Oncogene	Cell Cycle/Apoptosis	Cell Survival
+*A gene was classifed as an Oncogene if it was included in the Cancer Gene Census (www.sanger.ac.uk/genetics/CGP/Census/)  and met the criteria for a high confidence amplfied gene (Class I or II) described in Santarius  et al., Nat Rev Cancer 2010;10(1):59-64.  A gene was classified as a TSG if had at least 10 documented homozygous deletions in the COSMIC database (http://www.sanger.ac.uk/genetics/CGP/cosmic/) and was not co-deleted with another genes that had at least 10 documented instances of homozygous deletion.   The genes in this table exclude those that are amplified or deleted but are listed as driver genes affected by intragenic alterations (table S2A) or copy number changes (table S2B).  					
