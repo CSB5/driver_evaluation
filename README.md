@@ -129,30 +129,14 @@ METHODS
 
 # How to do a test run
 
-You may run the script <driver_evaluation.pl> as below, in the <EVALUATION_DATA_SET> directory.
+The config file in the <EVALUATION_DATA_SET> directory contains the the options listed below that are relevant to your test run.
+
+In the config, the path to the script directory <EVALUATION_DATA_SET/driver_evaluation> needs to be specified, according to where it has been unzipped.
+
+
+You may run the script <driver_evaluation.pl> as below, in the <EVALUATION_DATA_SET> directory, as follows.
 
         perl path_to/driver_evaluation/driver_evaluation.pl --config ./driver_evaluation.cfg
-
-The config file in the <EVALUATION_DATA_SET> directory contains the the options listed below that are relevant to your test run. 
-
-Path to the script directory <EVALUATION_DATA_SET/driver_evaluation> needs to be specified according to where it has been unzipped.
-
-#Main dir
-
-analysis_dir=./RESULTS/
-
-#Out dir
-
-final_outdir=./EVALUATION_RESULT_DIRECTORY
-
-#Script dir
-
-script_dir=path_to/driver_evaluation/
-
-#Selected method file          ###TO COMMENT IF PARAMETER IS NOT NEEDED
-
-selected_method_file=extra_methods.txt
-
 
 The output contains the files below.
 
@@ -200,7 +184,7 @@ The following files contain the evaluation using the top 5 predictions:
 **sample_F1_RANK_5.dat:**           
 	Matrix (column: method, row: sample ID) where a cell represents the F1 score
 
-# Prediction of actionable genes
+### Prediction of actionable genes
 **sample_actionable_profile_5_all.dat:**              
 	Matrix (column: method, row: sample ID) where a cells represent the precision
 
@@ -211,7 +195,7 @@ The following files contain the evaluation using the top 5 predictions:
 **driver_number.dat:**        
 	Matrix (column: method, row: cancer type) where a cell represents the number of drivers predicted
 
-Contact:
+# Contact:
 
 If you have other questions or feedback, you may direct them to Jayce (kohjy@gis.a-star.edu.sg) and Denis (bertrandd@gis.a-star.edu.sg).
 
