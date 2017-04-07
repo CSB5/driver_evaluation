@@ -80,12 +80,19 @@ You may run the script <driver_evaluation.pl> as below,
 The config file contains the the options listed below that are relevant to your run.
 
 #Main directory for results
+
 analysis_dir=path_to/EVALUATION_DATA_SET/RESULTS/
+
 #Output directory for plots
+
 final_outdir=EVALUATION_RESULT_DIRECTORY
+
 #Script directory
+
 script_dir=path_to/driver_evaluation/
+
 #Selected method file, for additional method chosen by user          ###TO COMMENT IF PARAMETER IS NOT NEEDED
+
 selected_method_file=path_to/driver_evaluation/TEST_DATA_SET/extra_methods.txt
 
  ------------------------
