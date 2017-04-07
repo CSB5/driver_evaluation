@@ -1,4 +1,5 @@
-Driver evaluation is a toolbox that contains scripts to evalute cancer driver prediction methods, and compare them against prediction obtained by a collection of 18 cancer driver predictions method on 15 cancer types. 
+
+**Driver evaluation** is a toolbox that contains scripts to evalute cancer driver prediction methods, and compare them against prediction obtained by a collection of 18 cancer driver predictions method on 15 cancer types. 
 For each cancer type, we provide ready to use genomic (SNV and CNA) and transcriptomic data.
 Our database contain results from methods that differ widely in the information they require as input (e.g. point mutations, indels, CNAs, expression data etc.) and in the models/assumptions.
 We classifed the methods in the folowing categegories:
@@ -18,7 +19,7 @@ The test dataset is organized as follow:
 
 ### Genomic and transcriptomic data from 15 TCGA cancer types:
 
- <EVALUATION_DATA_SET/DATA>
+### <EVALUATION_DATA_SET/DATA>
 
 CNA and exome point mutation data for all cancer types were obtained from [GDAC](https://gdac.broadinstitute.org) via Firehose. Expression data for tumor and normal samples for all cancer types was downloaded from the [TCGA website](https://tcga-data.nci.nih.gov) (level 3). Samples from which the 3 data type were not present were excludued.
 
@@ -38,7 +39,7 @@ For each cancer type we are porviding the following files (see paper for detaile
 
 ### Organization of the result files from 18 method on 15 cancer types:
 
- <EVALUATION_DATA_SET/RESULT>
+### <EVALUATION_DATA_SET/RESULT>
 
 The .result files for the different methods are provided for each cancer types, and are writen using the following unified format:
 
@@ -69,18 +70,18 @@ You may run the script <driver_evaluation.pl> as below,
 
 The config file contains the the options listed below that are relevant to your run.
 
-#Main directory for results
+**Main directory for results**
 analysis_dir=path_to/EVALUATION_DATA_SET/RESULTS/
-#Output directory for plots
+**Output directory for plots**
 final_outdir=EVALUATION_RESULT_DIRECTORY
-#Script directory
+**Script directory**
 script_dir=path_to/driver_evaluation/
-#Selected method file, for additional method chosen by user          ###TO COMMENT IF PARAMETER IS NOT NEEDED
+**Selected method file, for additional method chosen by user          ###TO COMMENT IF PARAMETER IS NOT NEEDED**
 selected_method_file=path_to/driver_evaluation/TEST_DATA_SET/extra_methods.txt
 
  ------------------------
 
---> The file <extra_methods.txt> contains additional methods you may want to introduce to this run. Notice that the method name should be the same as the one of the one use for EVALUATION_DATA_SET/RESULTS/CANCER_TYPE/method_name.result
+--> The file <extra_methods.txt> contains additional methods that you want to introduce to this run. Notice that the method name should be the same as the one of the one use for EVALUATION_DATA_SET/RESULTS/CANCER_TYPE/method_name.result
 
 
 # How to do a test run
@@ -103,7 +104,7 @@ The methods were evaluated on how well their predictions identified cancer drive
 
 The following file contain the evaluation using the top 50 predictions (similar files are also available for the top 10 predictions):
 
-- **cancer_gene_CANCER_UNION_precision_RANK_50.dat:**	 
+- **cancer_gene_CANCER_UNION_precision_RANK_50.dat:**
 	Matrix (column: method, row: cancer type) where a cell represents the precision
 
 - **cancer_gene_CANCER_UNION_recall_RANK_50.dat:**     
@@ -118,7 +119,7 @@ The following file contain the evaluation using the top 50 predictions (similar 
 ## Patient level evaluation
 
 ### Number of driver per patients
-**sample_nb_driver_cat_RANK_ALL.dat:**      
+- **sample_nb_driver_cat_RANK_ALL.dat:**      
 	Matrix (column: method, row: number of driver [0, 1, 2-3, 4-8, 9-15, 16-25, >26]) where a cell represents the fraction of patients for a number of predicted driver category
 
 ### Concordance with gold standard
