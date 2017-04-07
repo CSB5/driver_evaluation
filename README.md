@@ -133,7 +133,7 @@ You may run the script <driver_evaluation.pl> as below, in the <EVALUATION_DATA_
 
         perl path_to/driver_evaluation/driver_evaluation.pl --config ./driver_evaluation.cfg
 
-The config file contains the the options listed below that are relevant to your test run. 
+The config file in the <EVALUATION_DATA_SET> directory contains the the options listed below that are relevant to your test run. 
 
 Path to the script directory <EVALUATION_DATA_SET/driver_evaluation> needs to be specified according to where it has been unzipped.
 
