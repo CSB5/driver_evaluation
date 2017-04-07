@@ -100,13 +100,16 @@ selected_method_file=path_to/driver_evaluation/TEST_DATA_SET/extra_methods.txt
 --> Format of selected_method_file. Notice that the method name should be the same as the one of the one use for EVALUATION_DATA_SET/RESULTS/CANCER_TYPE/method_name.result
 
 METHODS
+
 <method_name 1>
+
 <method_name 2>
 
 
 # How to do a test run
 
 1) The config file <driver_evaluation.cfg> in the <driver_evaluation/TEST_DATA_SET/> directory contains the the options listed below that are relevant to your test run.
+
 You may need to specify the analysis directory, analysis_dir=path_to/EVALUATION_DATA_SET/RESULTS/.
 
 2) Run the script <driver_evaluation.pl>, in the <driver_evaluation/TEST_DATA_SET/> directory, as follows.
