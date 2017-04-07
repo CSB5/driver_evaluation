@@ -12,6 +12,31 @@ A toolbox that contains scripts to evalute cancer driver prediction methods, and
 
 For each cancer type, we provide ready to use genomic (SNV and CNA) and transcriptomic data.
 
+Methods available
+
+- ActiveDriver
+- CHASM
+- DawnRank
+- DriverDB
+- DriverNet
+- fathmm
+- HotNet2
+- IntOGen
+- MutationAssessor
+- MutationTaster
+- MutSigCV
+- MutSig
+- NetBox
+- OncodriveCIS
+- OncodriveCLUST
+- OncodriveFM
+- oncoIMPACT
+- PolyPhen2
+- RRA
+- S2N
+- SIFT
+- transFIC
+
 
 # A database of cancer genomic and driver predictions
 
@@ -30,7 +55,7 @@ Expression data for tumor and normal samples for all cancer types was downloaded
 Samples from which the 3 data type were not present were excludued.
 
 
-For each cancer type we are porviding the following files:
+For each cancer type we are porviding the following files (see paper for detailed analysis):
 
 - GDAC_somatic_mutations.filtered.maf     
 	File that contains the point mutations in maf format
@@ -39,13 +64,13 @@ For each cancer type we are porviding the following files:
 - CNA_matrix.txt                          
 	Matrix (column: sample ID, row: gene name) where a cell is equal to 1 if the gene have undergone a focal amplification, -1 if the gene undegone a focal deletion, 0 if the gene is consedered as copy number neutral
 - normalized_expression_matrix.txt        
-	Matrix (column: sample ID, row: gene name) where a cell represents the normalized expression values obtain using DEseq (see paper for detailed analysis)
+	Matrix (column: sample ID, row: gene name) where a cell represents the normalized expression values obtain using DEseq
 - differential_expression_matrix.txt      
 	Matrix (column: sample ID, row: gene name) where a cell represents the fold change obtained using DEseq by comparing each tumor to a set of normal samples (see paper for detailled analysis)
 
 ## Organization of the result files from 18 method on 15 cancer types <EVALUATION_DATA_SET/RESULT>:
 
-The .results files for the different methods are provided for each cancer types, and are writen using the following unified format:
+The .result files for the different methods are provided for each cancer types, and are writen using the following unified format:
 
 **Gene_name:**     HUGO gene name 
 
@@ -68,7 +93,7 @@ The .results files for the different methods are provided for each cancer types,
 
 3)Run our evaluation script
 
-You may run the script <result_evaluation.pl> as below,
+You may run the script <driver_evaluation.pl> as below,
 
 	perl path_to/driver_evaluation/driver_evaluation.pl --config driver_evaluation.cfg
 
@@ -77,7 +102,7 @@ The config file contains the the options listed below that are relevant to your 
 
 #Main directory for results
 
-analysis_dir=full_path_to/EVALUATION_DATA_SET/RESULTS/
+analysis_dir=path_to/EVALUATION_DATA_SET/RESULTS/
 
 #Output directory for plots
 
@@ -85,7 +110,7 @@ final_outdir=EVALUATION_RESULT_DIRECTORY
 
 #Script directory
 
-script_dir=full_path_to/driver_evaluation/
+script_dir=path_to/driver_evaluation/
 
 #Selected method file, for additional method chosen by user          ###TO COMMENT IF PARAMETER IS NOT NEEDED
 
@@ -102,18 +127,44 @@ METHODS
 <method_name 2>
 
 
-eg.
+# How to do a test run
 
-METHODS
+You may run the script <driver_evaluation.pl> as below, in the <EVALUATION_DATA_SET> directory.
 
-ConsensusDriver
+        perl path_to/driver_evaluation/driver_evaluation.pl --config ./driver_evaluation.cfg
+
+The config file contains the the options listed below that are relevant to your test run. 
+
+Path to the script directory <EVALUATION_DATA_SET/driver_evaluation> needs to be specified according to where it has been unzipped.
+
+#Main dir
+
+analysis_dir=./RESULTS/
+
+#Out dir
+
+final_outdir=./EVALUATION_RESULT_DIRECTORY
+
+#Script dir
+
+script_dir=path_to/driver_evaluation/
+
+#Selected method file          ###TO COMMENT IF PARAMETER IS NOT NEEDED
+
+selected_method_file=extra_methods.txt
+
+
+The output contains the files below.
+
 
 # Output:
 ## Cohort level evaluation
 ### Concordance with gold standard
 The methods were evaluated on how well their predictions identified cancer driver genes based on three standard measures: precision (fraction of predictions that belong to the gold standard), recall (fraction of the gold standard contained in the predictions) and the F1 score that combines both precision and recall. The gold standard gene lists can be found in driver_evaluation/GOLD_STANDARD/.
 
-The following file contain the evaluation using the top 50 (top 10) predictions:
+The following file contain the evaluation using the top 50 predictions:
+
+(Similar files are also available for the top 10 predictions.)
 
 **cancer_gene_CANCER_UNION_precision_RANK_50.dat:**	 
 	Matrix (column: method, row: cancer type) where a cell represents the precision
@@ -131,12 +182,14 @@ The following file contain the evaluation using the top 50 (top 10) predictions:
 
 ### Number of driver per patients
 **sample_nb_driver_cat_RANK_ALL.dat:**      
-	Matrix (column: method, row: number of driver [0, 1, 2-3, 4-8, 9-15, 16-25, >26) where a cell represents the fraction of patients for a number of predicted driver category
+	Matrix (column: method, row: number of driver [0, 1, 2-3, 4-8, 9-15, 16-25, >26]) where a cell represents the fraction of patients for a number of predicted driver category
 
 ### Concordance with gold standard
 The methods were evaluated on how well their patient-specific predictions identified cancer driver genes at the patient level based on three standard measures: precision, recall  and the F1 score that combines both precision and recall using the same gold standard as for the cohort based evaluation.
 
-The following files contain the evaluation using the top 5 (top 3 and top 10) predictions:
+The following files contain the evaluation using the top 5 predictions:
+
+(Similar files are also available for the top 3 and top 10 predictions.)
 
 **sample_precision_RANK_5.dat:**    
 	Matrix (column: method, row: sample ID) where a cell represents the precision
