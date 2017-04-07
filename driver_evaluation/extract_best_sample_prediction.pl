@@ -5,7 +5,7 @@ use warnings;
 
 my ($consolidated_result_dir, $data_gene_annotation_file, $max_rank, $additional_method_file, $script_dir) = @ARGV;
 
- require "$script_dir/common_functions_edit.pl";
+ require "$script_dir/common_functions.pl";
 
 my $out_dir = "$consolidated_result_dir\_$max_rank";
 run_exe("mkdir $out_dir") if(! -d $out_dir);#<STDIN>;

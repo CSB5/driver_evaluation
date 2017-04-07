@@ -9,34 +9,14 @@ What is it?
 
 
 A toolbox that contains scripts to evalute cancer driver prediction methods, and compare them against prediction obtained by a collection of 18 cancer driver predictions method on 15 cancer types. 
-
 For each cancer type, we provide ready to use genomic (SNV and CNA) and transcriptomic data.
-
-Methods available
-
-- ActiveDriver
-- CHASM
-- DawnRank
-- DriverDB
-- DriverNet
-- fathmm
-- HotNet2
-- IntOGen
-- MutationAssessor
-- MutationTaster
-- MutSigCV
-- MutSig
-- NetBox
-- OncodriveCIS
-- OncodriveCLUST
-- OncodriveFM
-- oncoIMPACT
-- PolyPhen2
-- RRA
-- S2N
-- SIFT
-- transFIC
-
+Our database contain results from methods that differ widely in the information they require as input (e.g. point mutations, indels, CNAs, expression data etc.) and in the models/assumptions.
+We classifed the methods in the folowing categegories:
+- methods that belong to the functional impact category (primarily designed to identify function altering mutations but have been used for predicting drivers, such as [SIFT](http://sift.bii.a-star.edu.sg/), [PolyPhen2](http://genetics.bwh.harvard.edu/pph2/), [MutationTaster](http://www.mutationtaster.org/) and [MutationAssessor](http://mutationassessor.org/r3/)
+- methods that tailor the Functional Impact idea to cancer by learning specific models such as [CHASM](http://wiki.chasmsoftware.org/index.php/CHASM_Overview), [transFIC](https://omictools.com/transformed-functional-impact-score-for-cancer-tool) and [fathmm](http://fathmm.biocompute.org.uk/) 
+- methods that use cohort based analysis to detect signals of positive selection such as [ActiveDriver](http://individual.utoronto.ca/reimand/ActiveDriver/), [MutSigCV](http://software.broadinstitute.org/cancer/software/genepattern/modules/docs/MutSigCV), [OncodriveCLUST](https://bitbucket.org/bbglab/oncodriveclust) and [OncodriveFM](http://bg.upf.edu/group/projects/oncodrive-fm.php)
+- methods that integrate mutation data with transcriptomic data by looking for mutation-expression correlations (OncodriveCIS)[http://bg.upf.edu/group/projects/oncodrive-cis.php] and (S2N)[http://www.maayanlab.net/S2N/]
+- methods that use information from gene/protein interaction networks to analyze the effect of mutations such as [NetBox](http://cbio.mskcc.org/downloads/), [HotNet2](http://compbio.cs.brown.edu/projects/hotnet2/), [DriverNet](http://driver-net.com/about), [DawnRank](http://bioen-compbio.bioen.illinois.edu/DawnRank/) and [OncoIMPACT](https://sourceforge.net/projects/oncoimpact/). 
 
 # A database of cancer genomic and driver predictions
 
@@ -95,48 +75,37 @@ The .result files for the different methods are provided for each cancer types, 
 
 You may run the script <driver_evaluation.pl> as below,
 
-	perl path_to/driver_evaluation/driver_evaluation.pl --config driver_evaluation.cfg
+	perl path_to/driver_evaluation/driver_evaluation.pl --config path_to/driver_evaluation/TEST_DATA_SET/driver_evaluation.cfg
 
-(These directories are taken with reference to <EVALUATION_DATA_SET> directory.
 The config file contains the the options listed below that are relevant to your run.
 
 #Main directory for results
-
 analysis_dir=path_to/EVALUATION_DATA_SET/RESULTS/
-
 #Output directory for plots
-
 final_outdir=EVALUATION_RESULT_DIRECTORY
-
 #Script directory
-
 script_dir=path_to/driver_evaluation/
-
 #Selected method file, for additional method chosen by user          ###TO COMMENT IF PARAMETER IS NOT NEEDED
-
-selected_method_file=extra_methods.txt
+selected_method_file=path_to/driver_evaluation/TEST_DATA_SET/extra_methods.txt
 
  ------------------------
 
 --> Format of selected_method_file. Notice that the method name should be the same as the one of the one use for EVALUATION_DATA_SET/RESULTS/CANCER_TYPE/method_name.result
 
 METHODS
-
 <method_name 1>
-
 <method_name 2>
 
 
 # How to do a test run
 
-The config file in the <EVALUATION_DATA_SET> directory contains the the options listed below that are relevant to your test run.
+1) The config file <driver_evaluation.cfg> in the <driver_evaluation/TEST_DATA_SET/> directory contains the the options listed below that are relevant to your test run.
+You may need to specify the analysis directory, analysis_dir=path_to/EVALUATION_DATA_SET/RESULTS/.
 
-In the config, the path to the script directory <EVALUATION_DATA_SET/driver_evaluation> needs to be specified, according to where it has been unzipped.
+2) Run the script <driver_evaluation.pl>, in the <driver_evaluation/TEST_DATA_SET/> directory, as follows.
 
+        perl ../driver_evaluation.pl --config ./driver_evaluation.cfg
 
-You may run the script <driver_evaluation.pl> as below, in the <EVALUATION_DATA_SET> directory, as follows.
-
-        perl path_to/driver_evaluation/driver_evaluation.pl --config ./driver_evaluation.cfg
 
 The output contains the files below.
 

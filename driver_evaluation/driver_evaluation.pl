@@ -90,9 +90,9 @@ if (!defined($script_dir)) {
 }
 
 
+run_exe("mkdir $final_out_dir");
 
-
-require "$script_dir/common_functions_edit.pl";
+require "$script_dir/common_functions.pl";
 
 
 
@@ -209,7 +209,7 @@ foreach $data_set (@all_data_set){
     $data_set_result_dir = "$analysis_dir/$data_set";
     #run_exe("mkdir -p $data_set_result_dir");
     if(-e "$data_set_result_dir"){
-	print STDERR " *** ANALYSE $data_set\n";
+#####	print STDERR " *** ANALYSE $data_set\n";
 	push(@DATA_SET_ORDER, $data_set);
 	#$data_set_data_dir = "$analysis_dir/../DATA_TCGA/$data_set/gene_mutation_frequency.txt";
 	$data_set_data_dir = "$analysis_dir/../DATA/$data_set/gene_mutation_frequency.txt";
@@ -221,47 +221,47 @@ foreach $data_set (@all_data_set){
 	    
 	    #Run the pairwise comparision analysis
 	    if($FLAG_COMPUTE_DRIVER_NUMBER || $FLAG_PLOT_METHOD_COMPARISON_HEAT_MAP || $FLAG_PLOT_SHARED_METHOD_CALL || $FLAG_PLOT_DRIVER_MUTATION_FREQUENCY){
- 		run_exe("$script_dir/pair_wise_comparision_edit.pl $data_set_result_dir $data_set_data_dir $out_dir ALL NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");#<STDIN>;
+ 		run_exe("$script_dir/pair_wise_comparision.pl $data_set_result_dir $data_set_data_dir $out_dir ALL NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");#<STDIN>;
 		if($FLAG_COMPARISON_WITH_CANCER_GENE){
 		    #The Cancer plots
-		    run_exe("$script_dir/pair_wise_comparision_edit.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_UNION NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");
-		    run_exe("$script_dir/pair_wise_comparision_edit.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");
-		    run_exe("$script_dir/pair_wise_comparision_edit.pl $data_set_result_dir $data_set_data_dir $out_dir CGC_CNA NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");
-		    run_exe("$script_dir/pair_wise_comparision_edit.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_NO_CS NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");#<STDIN>;
-		    run_exe("$script_dir/pair_wise_comparision_edit.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_FP NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");#<STDIN>;
+		    run_exe("$script_dir/pair_wise_comparision.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_UNION NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");
+		    run_exe("$script_dir/pair_wise_comparision.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");
+		    run_exe("$script_dir/pair_wise_comparision.pl $data_set_result_dir $data_set_data_dir $out_dir CGC_CNA NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");
+		    run_exe("$script_dir/pair_wise_comparision.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_NO_CS NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");#<STDIN>;
+		    run_exe("$script_dir/pair_wise_comparision.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_FP NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");#<STDIN>;
 		    #
 		    if($FLAG_PLOT_SHARED_METHOD_CALL){
 			#The data exluding the CHASM test data set
-			run_exe("$script_dir/pair_wise_comparision_edit.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_CHASM NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");
-			run_exe("$script_dir/pair_wise_comparision_edit.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_NO_CS_CHASM NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");
-			run_exe("$script_dir/pair_wise_comparision_edit.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_FP_CHASM NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");#<STDIN>;
-			run_exe("$script_dir/pair_wise_comparision_edit.pl $data_set_result_dir $data_set_data_dir $out_dir NO_ANNOTATION_CHASM NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");
+			run_exe("$script_dir/pair_wise_comparision.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_CHASM NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");
+			run_exe("$script_dir/pair_wise_comparision.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_NO_CS_CHASM NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");
+			run_exe("$script_dir/pair_wise_comparision.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_FP_CHASM NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");#<STDIN>;
+			run_exe("$script_dir/pair_wise_comparision.pl $data_set_result_dir $data_set_data_dir $out_dir NO_ANNOTATION_CHASM NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");
 			#
 			#fathmm
-			run_exe("$script_dir/pair_wise_comparision_edit.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_fathmm NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");
-			run_exe("$script_dir/pair_wise_comparision_edit.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_NO_CS_fathmm NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");#<STDIN>;
-			run_exe("$script_dir/pair_wise_comparision_edit.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_FP_fathmm NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");#<STDIN>;
-			run_exe("$script_dir/pair_wise_comparision_edit.pl $data_set_result_dir $data_set_data_dir $out_dir NO_ANNOTATION_fathmm NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");#<STDIN>;
+			run_exe("$script_dir/pair_wise_comparision.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_fathmm NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");
+			run_exe("$script_dir/pair_wise_comparision.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_NO_CS_fathmm NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");#<STDIN>;
+			run_exe("$script_dir/pair_wise_comparision.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_FP_fathmm NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");#<STDIN>;
+			run_exe("$script_dir/pair_wise_comparision.pl $data_set_result_dir $data_set_data_dir $out_dir NO_ANNOTATION_fathmm NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");#<STDIN>;
 		    }
 		}
-		 run_exe("$script_dir/pair_wise_comparision_edit.pl $data_set_result_dir $data_set_data_dir $out_dir ALL NO_PLOT $selected_method_file 1 APPEND_RESULT 1 $script_dir") if($selected_method_file ne "NONE");
-		#run_exe("$script_dir/pair_wise_comparision_edit.pl $meta_data_res_dir $data_set_data_dir $out_dir ALL NO_PLOT $selected_method_file 1 APPEND_RESULT");
+		 run_exe("$script_dir/pair_wise_comparision.pl $data_set_result_dir $data_set_data_dir $out_dir ALL NO_PLOT $selected_method_file 1 APPEND_RESULT 1 $script_dir") if($selected_method_file ne "NONE");
+		#run_exe("$script_dir/pair_wise_comparision.pl $meta_data_res_dir $data_set_data_dir $out_dir ALL NO_PLOT $selected_method_file 1 APPEND_RESULT");
 	    }
 	    
 	    #Run the sample based analysis
-	    run_exe("$script_dir/sample_evaluation_edit.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_UNION NONE 1 NEW_RESULT NO_PLOT $script_dir") if($FLAG_PLOT_SAMPLE_BASED_ANALYSIS && ($selected_method_file eq "NONE")) ;#<STDIN>;
-	    run_exe("$script_dir/sample_evaluation_edit.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_UNION $selected_method_file 1 APPEND_RESULT NO_PLOT $script_dir") if($FLAG_PLOT_SAMPLE_BASED_ANALYSIS && ($selected_method_file ne "NONE"));	   
+	    run_exe("$script_dir/sample_evaluation.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_UNION NONE 1 NEW_RESULT NO_PLOT $script_dir") if($FLAG_PLOT_SAMPLE_BASED_ANALYSIS && ($selected_method_file eq "NONE")) ;#<STDIN>;
+	    run_exe("$script_dir/sample_evaluation.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_UNION $selected_method_file 1 APPEND_RESULT NO_PLOT $script_dir") if($FLAG_PLOT_SAMPLE_BASED_ANALYSIS && ($selected_method_file ne "NONE"));	   
  	
 	    #
 	    print STDERR "$FLAG_PLOT_SAMPLE_ACTIONABLE_ANALYSIS $selected_method_file\n";
-	    run_exe("$script_dir/sample_actionable_gene_edit.pl $data_set_result_dir $data_set_data_dir $out_dir NONE 1 NEW_RESULT NO_PLOT $script_dir") if($FLAG_PLOT_SAMPLE_ACTIONABLE_ANALYSIS  && ($selected_method_file eq "NONE")) ;#<STDIN>;
-            run_exe("$script_dir/sample_actionable_gene_edit.pl $data_set_result_dir $data_set_data_dir $out_dir $selected_method_file 1 APPEND_RESULT NO_PLOT $script_dir") if($FLAG_PLOT_SAMPLE_ACTIONABLE_ANALYSIS  && ($selected_method_file ne "NONE"));
+	    run_exe("$script_dir/sample_actionable_gene.pl $data_set_result_dir $data_set_data_dir $out_dir NONE 1 NEW_RESULT NO_PLOT $script_dir") if($FLAG_PLOT_SAMPLE_ACTIONABLE_ANALYSIS  && ($selected_method_file eq "NONE")) ;#<STDIN>;
+            run_exe("$script_dir/sample_actionable_gene.pl $data_set_result_dir $data_set_data_dir $out_dir $selected_method_file 1 APPEND_RESULT NO_PLOT $script_dir") if($FLAG_PLOT_SAMPLE_ACTIONABLE_ANALYSIS  && ($selected_method_file ne "NONE"));
 
 	    #Run the concordance comparision analysis
-	    #run_exe("$script_dir/pair_wise_comparision_edit.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER NO_PLOT");
+	    #run_exe("$script_dir/pair_wise_comparision.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER NO_PLOT");
 	    if($FLAG_PLOT_CONCORDANCE_ANALYSIS){
-		run_exe("$script_dir/cancer_gene_concordance_edit.pl $data_set_result_dir $data_set_data_dir CANCER_UNION $out_dir NO_PLOT NONE 1 NEW_RESULT $script_dir") if($selected_method_file eq "NONE");#<STDIN>;
-		run_exe("$script_dir/cancer_gene_concordance_edit.pl $data_set_result_dir $data_set_data_dir CANCER_UNION $out_dir NO_PLOT $selected_method_file 1 APPEND_RESULT $script_dir") if($selected_method_file ne "NONE");
+		run_exe("$script_dir/cancer_gene_concordance.pl $data_set_result_dir $data_set_data_dir CANCER_UNION $out_dir NO_PLOT NONE 1 NEW_RESULT $script_dir") if($selected_method_file eq "NONE");#<STDIN>;
+		run_exe("$script_dir/cancer_gene_concordance.pl $data_set_result_dir $data_set_data_dir CANCER_UNION $out_dir NO_PLOT $selected_method_file 1 APPEND_RESULT $script_dir") if($selected_method_file ne "NONE");
 	    }
 	}
 	#last;
@@ -938,7 +938,7 @@ sub combine_FP{
         #
         next if(! exists $METHOD_ANALYSED_FP{$method});
         #
-        print STDERR " *** method analysised $method\n";
+#####        print STDERR " *** method analysised $method\n";
         @avg_res = ();
         for($i = -$nb_noise_rate; $i < $nb_noise_rate*@rank_FP; $i++){push(@avg_res, 0);}
 

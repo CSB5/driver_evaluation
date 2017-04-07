@@ -87,7 +87,7 @@ sub read_method_result{
 	    my %method_info = ();
 
 	    $path_to_res_file = "$consolidated_result_dir/$res_file";
-	    print STDERR " *** Analyse $path_to_res_file -> $method\n";#<STDIN>;
+	    #print STDERR " *** Analyse $path_to_res_file -> $method\n";#<STDIN>;
 	    next if(! -e $path_to_res_file);
 	    open(FILE, "$path_to_res_file");
 	    <FILE>;#Skip the header
@@ -178,7 +178,7 @@ sub gene_annotation{
     my ($data_gene_annotation, $sample_list, $data_gene_annotation_file, $cancer_annotation) = @_;
     
 
-    print STDERR " *** Read gene annotation file $data_gene_annotation_file\n";
+#####    print STDERR " *** Read gene annotation file $data_gene_annotation_file\n";
 
     open(FILE, $data_gene_annotation_file);
 
@@ -317,7 +317,7 @@ sub cancer_annotation{
 	    $cancer_census->{$gene} = 1;
 	}
 	close(FILE);
-	print STDERR $gene_status_selection." + CGS list size = ".(keys %{$cancer_census})."\n";
+	#print STDERR $gene_status_selection." + CGS list size = ".(keys %{$cancer_census})."\n";
     }
         
     if(index($gene_status_selection, "CGC_CNA") != -1 && index($gene_status_selection, "FP") == -1){
@@ -340,7 +340,7 @@ sub cancer_annotation{
 	    $cancer_census->{$gene} = 1;
 	}
 	close(FILE);
-	print STDERR $gene_status_selection." + CGS_CN list size = ".(keys %{$cancer_census})."\n";
+	#print STDERR $gene_status_selection." + CGS_CN list size = ".(keys %{$cancer_census})."\n";
 	
 	$cancer_gene_census_file = "$gold_standard_dir/NCG_CNV_gene.txt";
 	open(FILE, $cancer_gene_census_file);
@@ -359,7 +359,7 @@ sub cancer_annotation{
 	    $cancer_census->{$gene} = 1 if(!exists $only_cs{$gene});
 	}
 	close(FILE);
-	print STDERR $gene_status_selection."+ CGC_CN list size = ".(keys %{$cancer_census})."\n";
+	#print STDERR $gene_status_selection."+ CGC_CN list size = ".(keys %{$cancer_census})."\n";
 	
     }
 
@@ -389,7 +389,7 @@ sub cancer_annotation{
 	    $cancer_census->{$gene} = 1 if(!exists $only_cs{$gene} || $gene_status_selection eq "CANCER_UNION");
 	}
 	close(FILE);
-	print STDERR $gene_status_selection." + uniprot list size = ".(keys %{$cancer_census})."\n";
+	#print STDERR $gene_status_selection." + uniprot list size = ".(keys %{$cancer_census})."\n";
 	
 	#print STDERR " *** Nb CC + PROTgene:".(keys %{$cancer_census})."\n";<STDIN>;
 	
@@ -411,7 +411,7 @@ sub cancer_annotation{
 	    $cancer_census->{$gene} = 1 if(!exists $only_cs{$gene} || $gene_status_selection eq "CANCER_UNION");
 	}
 	close(FILE);
-	print STDERR $gene_status_selection."+ NCG_CNV list size = ".(keys %{$cancer_census})."\n";
+	#print STDERR $gene_status_selection."+ NCG_CNV list size = ".(keys %{$cancer_census})."\n";
 	
 	#cut -f1 ~/vogelstein_* | grep -v Table - | grep -v Gene - | grep -v number > ~/vogelstein_list.dat
 	$cancer_gene_census_file = "$gold_standard_dir/vogelstein_list.dat";
@@ -432,7 +432,7 @@ sub cancer_annotation{
 	    $cancer_census->{$gene} = 1 if(!exists $only_cs{$gene} || $gene_status_selection eq "CANCER_UNION");
 	}
 	close(FILE);
-	print STDERR $gene_status_selection." + vogelstein list size = ".(keys %{$cancer_census})."\n";
+	#print STDERR $gene_status_selection." + vogelstein list size = ".(keys %{$cancer_census})."\n";
 	
 	#data from DISEASES: Test mining and data integration of disease-gene association used in xxx paper
 	$cancer_gene_census_file = "$gold_standard_dir/human_disease_textmining_filtered.csv";
@@ -459,7 +459,7 @@ sub cancer_annotation{
 	    }
 	}
 	close(FILE);
-	print STDERR $gene_status_selection." + human_disease list size = ".(keys %{$cancer_census})."\n";#<STDIN>;
+	#print STDERR $gene_status_selection." + human_disease list size = ".(keys %{$cancer_census})."\n";#<STDIN>;
 
 	#cut -f2,4,6 GOLD_STANDARD/human_disease_textmining_filtered.csv | grep -e Cancer  | awk '{if($3 > 2.5) print $1}' | wc -l
 
@@ -485,10 +485,10 @@ sub cancer_annotation{
 	    $cancer_census->{$gene} = 1;
 	}
 	close(FILE);
-	print STDERR $gene_status_selection." + cancer cell = ".(keys %{$cancer_census})."\n";#<STDIN>;
+	#print STDERR $gene_status_selection." + cancer cell = ".(keys %{$cancer_census})."\n";#<STDIN>;
     }
 
-    print STDERR $gene_status_selection." FINAL list size = ".(keys %{$cancer_census})."\n";
+    #print STDERR $gene_status_selection." FINAL list size = ".(keys %{$cancer_census})."\n";
 
 }
 

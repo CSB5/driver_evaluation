@@ -5,7 +5,7 @@ use warnings;
 
 my ($consolidated_result_dir, $data_gene_annotation_file, $out_dir, $additional_method_file, $use_known_method, $append_result, $flag_plot, $script_dir) = @ARGV;
 
-require "$script_dir/common_functions_edit.pl";
+require "$script_dir/common_functions.pl";
 
 our (@RANK_THRESHOLD);
 #my (%pan_cancer, %cancer_census);

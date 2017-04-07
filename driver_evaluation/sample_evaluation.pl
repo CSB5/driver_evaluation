@@ -5,7 +5,7 @@ use warnings;
 
 my ($consolidated_result_dir, $data_gene_annotation_file, $out_dir, $gene_status_selection, $additional_method_file, $use_known_method, $append_result, $flag_plot, $script_dir) = @ARGV;
 
- require "$script_dir/common_functions_edit.pl";
+ require "$script_dir/common_functions.pl";
 
 our (@RANK_THRESHOLD);
 
@@ -34,7 +34,7 @@ foreach $method (@ID_to_method){
     if(! -e "$consolidated_result_dir/$method.result"){
 	$excluded_method{$method} = 1;
     }
-    print STDERR " *** Method used $method\n";
+###    print STDERR " *** Method used $method\n";
     my %map = ();
     $method_sample_driver{$method} = \%map;
     foreach $sample (keys %sample_list){

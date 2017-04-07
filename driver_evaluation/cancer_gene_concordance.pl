@@ -5,7 +5,7 @@ use warnings;
 
 my ($consolidated_result_dir, $data_gene_annotation_file, $gene_status_selection, $out_dir, $flag_plot, $additional_method_file, $use_known_method, $append_result, $script_dir, $file_ID) = @ARGV;
 
- require "$script_dir/common_functions_edit.pl";
+ require "$script_dir/common_functions.pl";
 our (@RANK_THRESHOLD);
 
 #
@@ -80,7 +80,7 @@ foreach my $gene (sort {$data_gene_annotation{$b}->{"MUT_FREQ"} <=> $data_gene_a
 
 my $nb_cancer_gene_mutated = $base_line_concordance[-1];
 my $nb_gene_mutated = keys (%data_gene_annotation) + 0;
-print STDERR " *** @base_line_concordance\n";
+#####print STDERR " *** @base_line_concordance\n";
 
 #For the sensitivity
 #write_sensitivity_file(\%method_concordance, $nb_cancer_gene, "$out_dir/cancer_gene_pred_sens.dat");
@@ -133,7 +133,7 @@ sub write_measure_file{
 
     my ($nb_driver_called, $nb_cancer_driver_called, $nb_cancer_gene);
 
-    print STDERR " *** ".$out_file."\n";
+#####    print STDERR " *** ".$out_file."\n";
     
     $write_type = ">"; $write_type = ">>" if($append_result eq "APPEND_RESULT");
 
