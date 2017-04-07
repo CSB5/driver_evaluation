@@ -47,17 +47,17 @@ For each cancer type we are porviding the following files:
 
 The .results files for the different methods are provided for each cancer types, and are writen using the following unified format:
 
-*Gene_name:     HUGO gene name 
+**Gene_name:**     HUGO gene name 
 
-*Sample:	       In case of methods providing sample specific prediction list of patient ID separated by ';', where the gene is predicted as driver, otherwise ALL
+**Sample:**	       In case of methods providing sample specific prediction list of patient ID separated by ';', where the gene is predicted as driver, otherwise ALL
 
-*Rank:	       Rank of the gene according to the method score/p-value
+**Rank:**	       Rank of the gene according to the method score/p-value
 
-*Score:	       Score/p-value repported by the method
+**Score:**	       Score/p-value repported by the method
 
-*Info:	       Additional information. - if this field is empty
+**Info:**	       Additional information. - if this field is empty
 
-*Sample-specific_score:	   In case of methods providing patient specific predictions, list of score/p-value predicted for the mutation on that patient separated by ';' otherwise keep empty
+**Sample-specific_score:**	   In case of methods providing patient specific predictions, list of score/p-value predicted for the mutation on that patient separated by ';' otherwise keep empty
 
 
 # How to evaluate your methods
@@ -75,7 +75,7 @@ You may run the script <result_evaluation.pl> as below,
 (These directories are taken with reference to <EVALUATION_DATA_SET> directory.
 The config file contains the the options listed below that are relevant to your run.
 
-# Main directory for results
+#Main directory for results
 
 analysis_dir=full_path_to/EVALUATION_DATA_SET/RESULTS/
 
@@ -115,19 +115,22 @@ The methods were evaluated on how well their predictions identified cancer drive
 
 The following file contain the evaluation using the top 50 (top 10) predictions:
 
-*cancer_gene_CANCER_UNION_precision_RANK_50.dat	 
+**cancer_gene_CANCER_UNION_precision_RANK_50.dat:**	 
 	Matrix (column: method, row: cancer type) where a cell represents the precision
-*cancer_gene_CANCER_UNION_recall_RANK_50.dat     
+
+**cancer_gene_CANCER_UNION_recall_RANK_50.dat:**     
 	Matrix (column: method, row: cancer type) where a cell represents the recall
-*cancer_gene_CANCER_UNION_F1_RANK_50.dat         
+
+**cancer_gene_CANCER_UNION_F1_RANK_50.dat:**         
 	Matrix (column: method, row: cancer type) where a cell represents the F1 score
-*method_name_precision_RANK_50.dat               
+
+**method_name_precision_RANK_50.dat:**               
 	Precision as a function of the number of predictions for method_name.
 
 ## Patient level evaluation
 
-###Number of driver per patients
-*sample_nb_driver_cat_RANK_ALL.dat      
+### Number of driver per patients
+**sample_nb_driver_cat_RANK_ALL.dat:**      
 	Matrix (column: method, row: number of driver [0, 1, 2-3, 4-8, 9-15, 16-25, >26) where a cell represents the fraction of patients for a number of predicted driver category
 
 ### Concordance with gold standard
@@ -151,7 +154,7 @@ sample_actionable_profile_5_all.dat
 sample_actionable_profile_5_cancer_type.dat      
 	Matrix (column: method, row: cancer type) where a cells represent the fraction of patients with a predicted actionable gene
 
-##Additional files
+## Additional files
 *driver_number.dat        
 	Matrix (column: method, row: cancer type) where a cell represents the number of drivers predicted
 
