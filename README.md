@@ -1,3 +1,4 @@
+# Introduction
 
 **Driver evaluation** is a toolbox that contains scripts to evalute cancer driver prediction methods, and compare them against prediction obtained by a collection of 18 cancer driver predictions method on 15 cancer types. 
 For each cancer type, we provide ready to use genomic (SNV and CNA) and transcriptomic data.
@@ -19,9 +20,7 @@ The test dataset is organized as follow:
 
 ### Genomic and transcriptomic data from 15 TCGA cancer types:
 
-### <EVALUATION_DATA_SET/DATA>
-
-CNA and exome point mutation data for all cancer types were obtained from [GDAC](https://gdac.broadinstitute.org) via Firehose. Expression data for tumor and normal samples for all cancer types was downloaded from the [TCGA website](https://tcga-data.nci.nih.gov) (level 3). Samples from which the 3 data type were not present were excludued.
+CNA and exome point mutation data for all cancer types were obtained from [GDAC](https://gdac.broadinstitute.org) via Firehose. Expression data for tumor and normal samples for all cancer types was downloaded from the [TCGA website](https://tcga-data.nci.nih.gov) (level 3). Samples from which the 3 data type were not present were excludued. These can be found in the test dataset, <EVALUATION_DATA_SET/DATA>.
 
 
 For each cancer type we are porviding the following files (see paper for detailed analysis):
@@ -39,9 +38,8 @@ For each cancer type we are porviding the following files (see paper for detaile
 
 ### Organization of the result files from 18 method on 15 cancer types:
 
-### <EVALUATION_DATA_SET/RESULT>
-
 The .result files for the different methods are provided for each cancer types, and are writen using the following unified format:
+(They can be found in <EVALUATION_DATA_SET/RESULT>.)
 
 - **Gene_name:**     HUGO gene name 
 
@@ -55,6 +53,9 @@ The .result files for the different methods are provided for each cancer types, 
 
 - **Sample-specific_score:**	   In case of methods providing patient specific predictions, list of score/p-value predicted for the mutation on that patient separated by ';' otherwise keep empty
 
+# Dependencies
+
+The Perl module 'Config::Simple is required. The steps needed to install this module can be found [here](http://www.livejournal.com/doc/server/lj.install.perl_setup.modules.html).
 
 # How to evaluate your methods
 
@@ -70,21 +71,13 @@ You may run the script <driver_evaluation.pl> as below,
 
 The config file contains the the options listed below that are relevant to your run.
 
-**Main directory for results**
-	
-analysis_dir=path_to/EVALUATION_DATA_SET/RESULTS/
+- **analysis_dir:**	Main directory for results
 
-**Output directory for plots**
-	
-final_outdir=EVALUATION_RESULT_DIRECTORY
+- **final_outdir:**	Output directory for plots
 
-**Script directory**
-	
-script_dir=path_to/driver_evaluation/
+- **script_dir:**	Script directory
 
-**Selected method file, for additional method chosen by user          ###TO COMMENT IF PARAMETER IS NOT NEEDED**
-	
-selected_method_file=path_to/driver_evaluation/TEST_DATA_SET/extra_methods.txt
+- **selected_method_file:**	Selected method file, for additional method chosen by user (To comment this if there is no additional methods)
 
  ------------------------
 
