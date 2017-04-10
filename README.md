@@ -38,8 +38,7 @@ For each cancer type we are porviding the following files (see paper for detaile
 
 ### Organization of the result files from 18 method on 15 cancer types:
 
-The .result files for the different methods are provided for each cancer types, and are writen using the following unified format:
-(They can be found in <EVALUATION_DATA_SET/RESULT>.)
+The .result files for the different methods are provided for each cancer types. They can be found in <EVALUATION_DATA_SET/RESULT> and are writen using the following unified format:
 
 - **Gene_name:**     HUGO gene name 
 
