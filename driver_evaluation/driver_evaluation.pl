@@ -204,7 +204,7 @@ foreach $data_set (@all_data_set){
 
     #next if($data_set eq "BRCA" || $data_set eq "UCEC");# || $data_set eq "LUSC");#Data set to exclude
     next if($data_set eq "UCEC");# || $data_set eq "LUSC");#Data set to exclude
-     next if($data_set eq "." || $data_set eq "..");
+     next if($data_set eq "." || $data_set eq ".." || $data_set =~ /^\./ );
 
     $data_set_result_dir = "$analysis_dir/$data_set";
     #run_exe("mkdir -p $data_set_result_dir");

@@ -73,7 +73,7 @@ my $gene_diretory = $out_dir."/../GENE";
 #<STDIN>;
 
 $gene_diretory .= "/$gene_status_selection/";
-run_exe("rm -r $gene_diretory");
+run_exe("rm -r $gene_diretory") if(-d $gene_diretory);
 run_exe("mkdir -p $gene_diretory") if(! -d $gene_diretory);
 
 #Write the pairwise comparison matrises
