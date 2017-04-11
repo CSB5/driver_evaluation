@@ -91,8 +91,9 @@ Notice that the method name should be the same as the one of the one use for EVA
 However, you may need to specify the analysis directory, analysis_dir=path_to/EVALUATION_DATA_SET/RESULTS/.
 
 2) Run the script <driver_evaluation.pl>, in the <driver_evaluation/TEST_DATA_SET/> directory, as follows.
-	cd driver_evaluation/TEST_DATA_SET/
-	perl ../driver_evaluation.pl --config ./driver_evaluation.cfg
+	
+cd driver_evaluation/TEST_DATA_SET/
+perl ../driver_evaluation.pl --config ./driver_evaluation.cfg
 
 
 
