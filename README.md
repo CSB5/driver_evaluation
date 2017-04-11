@@ -93,6 +93,7 @@ However, you may need to specify the analysis directory, analysis_dir=path_to/EV
 2) Run the script <driver_evaluation.pl>, in the <driver_evaluation/TEST_DATA_SET/> directory, as follows.
 
         cd driver_evaluation/TEST_DATA_SET/
+	
 	perl ../driver_evaluation.pl --config ./driver_evaluation.cfg
 
 
