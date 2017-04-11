@@ -54,21 +54,21 @@ The .result files for the different methods are provided for each cancer types. 
 
 # Dependencies
 
-The Perl module 'Config::Simple is required. The steps needed to install this module can be found [here](http://www.livejournal.com/doc/server/lj.install.perl_setup.modules.html).
+- The Perl module 'Config::Simple' is required. The steps needed to install this module can be found [here](http://www.livejournal.com/doc/server/lj.install.perl_setup.modules.html).
 
 # How to evaluate your methods
 
-1)Analyse the 15 cancer types using your method(s)
+1) Analyse the 15 cancer types using your method(s)
 
-2)Convert the output file of your method in our unified result format. The file should be writen for each cancer type in EVALUATION_DATA_SET/RESULTS/CANCER_TYPE/method_name.result
+2) Convert the output file of your method in our unified result format. The file should be writen for each cancer type in EVALUATION_DATA_SET/RESULTS/CANCER_TYPE/method_name.result
 
-3)Run our evaluation script
+3) Run our evaluation script
 
 You may run the script <driver_evaluation.pl> as below,
 
 	perl path_to/driver_evaluation.pl --config path_to/driver_evaluation.cfg
 
-The config file contains the the options listed below that are relevant to your run.
+The config file contains the the options.
 
 - **analysis_dir:**	Main directory for results
 
@@ -85,17 +85,16 @@ The config file contains the the options listed below that are relevant to your 
 Notice that the method name should be the same as the one of the one use for EVALUATION_DATA_SET/RESULTS/CANCER_TYPE/method_name.result
 
 
-# How to do a test run
+# How to perform a test run
 
-1) The config file <driver_evaluation.cfg> in the <driver_evaluation/TEST_DATA_SET/> directory contains the the options listed below that are relevant to your test run.
-You may need to specify the analysis directory, analysis_dir=path_to/EVALUATION_DATA_SET/RESULTS/.
+1) The entries for the options in the config file <driver_evaluation.cfg>, in the <driver_evaluation/TEST_DATA_SET/> directory, have already been filled for your test run.
+However, you may need to specify the analysis directory, analysis_dir=path_to/EVALUATION_DATA_SET/RESULTS/.
 
 2) Run the script <driver_evaluation.pl>, in the <driver_evaluation/TEST_DATA_SET/> directory, as follows.
 
-        perl ../driver_evaluation.pl --config ./driver_evaluation.cfg
+        cd driver_evaluation/TEST_DATA_SET/
+	perl ../driver_evaluation.pl --config ./driver_evaluation.cfg
 
-
-The output contains the files below.
 
 
 # Output:
