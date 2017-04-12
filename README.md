@@ -72,7 +72,7 @@ The config file contains the the options.
 
 - **analysis_dir:**	The directory that contains the predictions results for each cancer types
 
-- **final_outdir:**	The directory where the will contain the evalution result files
+- **final_outdir:**	The directory that will contain the evalution result files
 
 - **script_dir:**	 path_to/driver_evaluation/
 
