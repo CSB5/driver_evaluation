@@ -70,19 +70,19 @@ The .result files for the different methods are provided for each cancer type. T
 
 The config file contains the the options.
 
-- **analysis_dir:**	Main directory for results
+- **analysis_dir:**	The directory that contains the predictions results for each cancer types
 
-- **final_outdir:**	Output directory for plots
+- **final_outdir:**	The directory where the will contain the evalution result files
 
-- **script_dir:**	Script directory
+- **script_dir:**	 path_to/driver_evaluation/
 
-- **selected_method_file:**	Selected method file, for additional method chosen by user (To comment this if there is no additional methods)
+- **selected_method_file:**	Selected method file, for additional method chosen by user 
 
  ------------------------
 
---> The file <extra_methods.txt> contains additional methods that you want to introduce to this run. 
+--> The file <extra_methods.txt> contains additional method(s) that for the evalution. 
 
-Notice that the method name should be the same as the one of the one use for EVALUATION_DATA_SET/RESULTS/CANCER_TYPE/method_name.result
+Notice that the method name(s) should be the same as the one used for EVALUATION_DATA_SET/RESULTS/CANCER_TYPE/method_name.result
 
 
 # How to perform a test run
