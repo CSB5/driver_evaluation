@@ -54,7 +54,7 @@ The .result files for the different methods are provided for each cancer type. T
 
 # How to install the evaluation software
 
-- Download the latest version of the software and uncompress it or simply: `git clone https://github.com/CSB5/driver_evaluation.git`
+- Download the latest version of the software and uncompress it or `git clone https://github.com/CSB5/driver_evaluation.git`
 
 - In order to run the evaluation scripts the Perl module 'Config::Simple' is required. The module can be installed using the following command `cpan Config::Simple`
 
