@@ -18,7 +18,7 @@ Evaluation data-set and the 18 method predictions can be downloaded here: ftp://
 
 The evaluation data-set is organized as follow:
 
-### Genomic and transcriptomic data from 15 TCGA cancer types:
+### Genomic and transcriptomic data from 15 TCGA cancer types
 
 Point mutations and copy number variation data for all cancer types were obtained from [GDAC](https://gdac.broadinstitute.org) via Firehose. Expression data for tumor and normal samples for all cancer types was downloaded from the [TCGA website](https://tcga-data.nci.nih.gov) (level 3). Samples from which the 3 data types were not available were excluded. 
 
@@ -36,7 +36,7 @@ The directory <EVALUATION_DATA_SET/DATA> contains the following files for each o
 - **differential_expression_matrix.txt**      
 	Matrix (column: sample ID, row: gene name) where a cell represents the fold change obtained using DEseq by comparing each tumor to a set of normal samples (see [paper]() for detailed explanation of the analysis)
 
-### Organization of the result files from 18 methods on 15 cancer types
+### Predictions from 18 methods on 15 cancer types
 
 The .result files for the different methods are provided for each cancer type. They can be found in <EVALUATION_DATA_SET/RESULT> and are written using the following unified format:
 
@@ -52,9 +52,11 @@ The .result files for the different methods are provided for each cancer type. T
 
 - **Sample-specific_score:**	   In case of methods providing patient specific predictions, list of score/p-value predicted for the mutation on that patient separated by ';' otherwise keep empty
 
-# Dependencies
+# How to install the evaluation software
 
-- The Perl module 'Config::Simple' is required. The steps needed to install this module can be found [here](http://www.livejournal.com/doc/server/lj.install.perl_setup.modules.html).
+- Download the latest version of the software and uncompress it or simply: `git clone https://github.com/CSB5/driver_evaluation.git`
+
+- In order to run the evaluation scripts the Perl module 'Config::Simple' is required. The module can be installed using the following command `cpan Config::Simple`
 
 # How to evaluate your methods
 
@@ -64,7 +66,7 @@ The .result files for the different methods are provided for each cancer type. T
 
 3) Run the evaluation script <driver_evaluation.pl>
 
-	perl path_to/driver_evaluation.pl --config path_to/driver_evaluation.cfg
+	perl path_to/driver_evaluation/driver_evaluation.pl --config path_to/driver_evaluation.cfg
 
 The config file contains the the options.
 
@@ -102,7 +104,7 @@ You can find the results files in directory: <path_to/driver_evaluation/TEST_DAT
 ### Concordance with gold standard
 The methods were evaluated on how well their predictions identified cancer driver genes based on three standard measures: precision (fraction of predictions that belong to the gold standard), recall (fraction of the gold standard contained in the predictions) and the F1 score that combines both precision and recall. The gold standard gene lists can be found in driver_evaluation/GOLD_STANDARD/.
 
-The following file contain the evaluation result using the top 50 predictions (similar files are also available for the top 10 predictions):
+The following file contain the evaluation results using the top 50 predictions (similar files are also available for the top 10 predictions):
 
 - **cancer_gene_CANCER_UNION_precision_RANK_50.dat:**
 	Matrix (column: method, row: cancer type) where a cell represents the precision
@@ -125,7 +127,7 @@ The following file contain the evaluation result using the top 50 predictions (s
 ### Concordance with gold standard
 The methods were evaluated on how well their patient-specific predictions identified cancer driver genes at the patient level based on three standard measures: precision, recall and the F1 score that combines both precision and recall using the same gold standard as for the cohort based evaluation.
 
-The following files contain the evaluation result using the top 5 predictions (similar files are also available for the top 3 and top 10 predictions):
+The following files contain the evaluation results using the top 5 predictions (similar files are also available for the top 3 and top 10 predictions):
 
 - **sample_precision_RANK_5.dat:**    
 	Matrix (column: method, row: sample ID) where a cell represents the precision
@@ -137,8 +139,8 @@ The following files contain the evaluation result using the top 5 predictions (s
 	Matrix (column: method, row: sample ID) where a cell represents the F1 score
 
 ### Prediction of actionable genes
-The method were evaluated on their ability to identify patient specific drivers that are potentially actionable. The actionable gene list was obtained by combining actionable gene lists from (IntoGen)[] and (OncoKB)[], and can be found in <driver_evaluation/ACTIONABLE_GENES/combine_target.dat>. 
-The following files contain the evaluation result using the top 5 predictions (similar files are also available for top 10 predictions):
+The method were evaluated on their ability to identify patient specific drivers that are potentially actionable. The actionable gene list was obtained by combining actionable gene lists from [intOGen](https://www.intogen.org/downloads) and [OncoKB](http://oncokb.org/#/), and can be found in <driver_evaluation/ACTIONABLE_GENES/combine_target.dat>. 
+The following files contain the evaluation results using the top 5 predictions (similar files are also available for top 10 predictions):
 
 - **sample_actionable_profile_5_all.dat:**              
 	Matrix (column: method, row: actionable gene category [0: approved drug, 1: investigational target, 2: research target, 3: not actionable]) for each patient we retain the predicted driver that falls in the best actionable gene category (with 0 been the best one and 3 the worst), and each cell represents the fraction of patients that falls in a given actionable gene category.
