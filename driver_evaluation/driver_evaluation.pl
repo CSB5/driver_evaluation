@@ -74,7 +74,36 @@ print "done.\n";
 $analysis_dir       =$config{'general.analysis_dir'};
 $final_out_dir  =$config{'general.final_outdir'};
 $script_dir       =$config{'general.script_dir'};
-$selected_method_file    =$config{'general.selected_method_file'};
+#
+$new_method_dir       =$config{'general.method_dir'};
+
+run_exe("mkdir $final_out_dir") unless (-d $final_out_dir);
+
+print STDERR " *** $new_method_dir\n";
+opendir(DIR, $new_method_dir);
+my @all_cancer_type_prediction = readdir(DIR);
+close(DIR);
+
+my @tmp = split(/\//, $new_method_dir);
+my $additional_method_name = $tmp[@tmp-1];
+$method_name = $new_method_dir if(@tmp == 0);
+
+#$selected_method_file    =config{'general.selected_method_file'}; 
+$selected_method_file    = "$final_out_dir/additional_method_name.txt";
+
+#run_exe("rm $selected_method_file;touch $selected_method_file");
+run_exe("echo -e \"Method\" > $selected_method_file");
+run_exe("echo -e \"$additional_method_name\" >> $selected_method_file");
+
+foreach $file(@all_cancer_type_prediction){
+    if($file =~ /(.+)\.result/){
+	$cancer_type = $1;
+	run_exe("cp $new_method_dir/$file $analysis_dir/$cancer_type/$additional_method_name.result");
+    }
+}
+
+#exit(0);
+
 
 if (!defined($analysis_dir)) {
         print "analysis dir option need to be specified\n";
@@ -88,9 +117,6 @@ if (!defined($script_dir)) {
         print "script dir option need to be specified\n";
         exit 0;
 }
-
-
-run_exe("mkdir $final_out_dir");
 
 require "$script_dir/common_functions.pl";
 
@@ -594,6 +620,9 @@ if($FLAG_PLOT_SAMPLE_ACTIONABLE_ANALYSIS){
     }
 }
 
+#Clean the result directory
+run_exe("rm $analysis_dir/*/$additional_method_name.result");
+run_exe("rm $selected_method_file");
 
 sub combined_sample_actionable_gene{
     my ($file_type, $out_file) = @_;

@@ -51,9 +51,9 @@ The .result files for the different methods are provided for each cancer type. T
 
 # Evaluate new methods using the evaluation scripts
 
-1) Analyze data for the different cancer types using the new method(s)
+1) Analyze data for the different cancer types using the new method
 
-2) Convert the output of the method into unified result format defined above. The file should be written for each cancer type in EVALUATION_DATA_SET/RESULTS/CANCER_TYPE/method_name.result
+2) Convert the output file of the method into the unified result format defined above. The result files should be named according to the cancer type analysed with a '.result' extention (e.g. GBM.result) and organized in a single directory. The name of the directory will be used as the method name in the evaluation result files.
 
 3) Run the evaluation script <driver_evaluation.pl>
 
@@ -61,33 +61,26 @@ The .result files for the different methods are provided for each cancer type. T
 
 The config file can be used to set the following options:
 
-- **analysis_dir:**	The directory that contains the predictions results for each cancer types
+- **analysis_dir:**	The directory that contains the pre-computed predictions results
 
-- **final_outdir:**	The directory that will contain the evalution result files
+- **final_outdir:**	The directory that will contain the evaluation result files
 
-- **script_dir:**	 path_to/driver_evaluation/
+- **script_dir:**	path_to/driver_evaluation/
 
-- **selected_method_file:**	Selected method file, for additional method chosen by user 
+- **method_dir:**	Directory that contains the '.result' files of the evaluated method
 
  ------------------------
 
---> The file <extra_methods.txt> contains additional method(s) that for the evalution. 
-
-Notice that the method name(s) should be the same as the one used for EVALUATION_DATA_SET/RESULTS/CANCER_TYPE/method_name.result
-
 
 # Performing a test run
+1) Edit the `analysis_dir=` option in the file <driver_evaluation/TEST_DATA_SET/driver_evaluation.cfg> to indicate the path to EVALUATION_DATA_SET/RESULTS/.
+2) Run the evaluation as follows:
 
-1) The entries for the options in the config file <driver_evaluation.cfg>, in the <driver_evaluation/TEST_DATA_SET/> directory, have already been filled for your test run. However, you may need to specify the analysis directory, analysis_dir=path_to/EVALUATION_DATA_SET/RESULTS/.
+cd path_to/driver_evaluation/TEST_DATA_SET/
 
-2) Run the script <driver_evaluation.pl>, in the <driver_evaluation/TEST_DATA_SET/> directory, as follows.
-	
-	cd path_to/driver_evaluation/TEST_DATA_SET/
-	
-	
-	perl ../driver_evaluation.pl --config ./driver_evaluation.cfg
+perl ../driver_evaluation.pl --config driver_evaluation.cfg
 
-You can find the results files in directory: <path_to/driver_evaluation/TEST_DATA_SET/ConsensuDriverEvaluation>
+You can find the results files in the directory: <path_to/driver_evaluation/TEST_DATA_SET/ConsensuDriverEvaluation>
 
 # Description of the evaluation result files
 ## Cohort level evaluation
