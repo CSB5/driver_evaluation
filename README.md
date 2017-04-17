@@ -11,7 +11,7 @@ The evaluation dataset is organized as follows:
 
 Point mutation and copy number variation data for all cancer types was obtained from [GDAC](https://gdac.broadinstitute.org) via Firehose. Expression data for tumor and normal samples for all cancer types was downloaded from the [TCGA website](https://tcga-data.nci.nih.gov) (level 3). Samples for which the 3 data types were not available were excluded. 
 
-The directory <EVALUATION_DATA_SET/DATA> contains the following files for each of the cancer types:
+The directory `EVALUATION_DATA_SET/DATA` contains the following files for each of the cancer types:
 
 - **GDAC_somatic_mutations.filtered.maf**     
 	File that contains point mutations in maf format
@@ -26,7 +26,7 @@ The directory <EVALUATION_DATA_SET/DATA> contains the following files for each o
 
 ### Predictions from 18 methods on 15 cancer types
 
-The .result files for the different methods are provided for each cancer type. They can be found in <EVALUATION_DATA_SET/RESULT> and are in the following unified format:
+The .result files for the different methods are provided for each cancer type. They can be found in `EVALUATION_DATA_SET/RESULT` and are in the following unified format:
 
 - **Gene_name:**     HUGO gene name 
 
@@ -52,7 +52,7 @@ The .result files for the different methods are provided for each cancer type. T
 
 2) Convert the output file of the method into the unified result format defined above. The result files should be named according to the cancer type analysed with a '.result' extention (e.g. GBM.result) and organized in a single directory. The name of the directory will be used as the method name in the evaluation result files.
 
-3) Run the evaluation script <driver_evaluation.pl> using the following options:
+3) Run the evaluation script `driver_evaluation.pl` using the following options:
 
    - **--method_dir:**	Directory that contains the '.result' files of the evaluated method
 
@@ -71,7 +71,7 @@ perl ../bin/driver_evaluation.pl --method_dir ConsensusDriver/ --out_dir eval_re
 # Description of the evaluation result files
 ## Cohort level evaluation
 ### Concordance with gold standard
-The methods were evaluated on how well their predictions identified cancer driver genes based on three standard measures: precision (fraction of predictions that belong to the gold standard), recall (fraction of the gold standard contained in the predictions) and the F1 score that combines both precision and recall. The gold standard gene lists can be found in driver_evaluation/GOLD_STANDARD/.
+The methods were evaluated on how well their predictions identified cancer driver genes based on three standard measures: precision (fraction of predictions that belong to the gold standard), recall (fraction of the gold standard contained in the predictions) and the F1 score that combines both precision and recall. The gold standard gene lists can be found in `driver_evaluation/GOLD_STANDARD/`.
 
 The following files contain the evaluation results using the top 50 predictions (similar files are also available for the top 10 predictions):
 
@@ -108,7 +108,7 @@ The following files contain the evaluation results using the top 5 predictions (
 	Matrix (column: method, row: sample ID) where a cell represents the F1 score
 
 ### Prediction of actionable genes
-The method were evaluated on their ability to identify patient specific drivers that are potentially actionable. The actionable gene list was obtained by combining actionable gene lists from [intOGen](https://www.intogen.org/downloads) and [OncoKB](http://oncokb.org/#/), and can be found in <driver_evaluation/ACTIONABLE_GENES/combine_target.dat>. The following files contain the evaluation results using the top 5 predictions (similar files are also available for top 10 predictions):
+The method were evaluated on their ability to identify patient specific drivers that are potentially actionable. The actionable gene list was obtained by combining actionable gene lists from [intOGen](https://www.intogen.org/downloads) and [OncoKB](http://oncokb.org/#/), and can be found in `driver_evaluation/ACTIONABLE_GENES/combine_target.dat`. The following files contain the evaluation results using the top 5 predictions (similar files are also available for top 10 predictions):
 
 - **sample_actionable_profile_5_all.dat:**              
 	Matrix (column: method, row: actionable gene category [0: approved drug, 1: investigational target, 2: research target, 3: not actionable]) for each patient we retain the predicted driver that falls in the best actionable gene category (with 0 being the best one and 3 the worst), and each cell represents the fraction of patients that falls in a given actionable gene category.
