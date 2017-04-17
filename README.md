@@ -59,9 +59,11 @@ The .result files for the different methods are provided for each cancer type. T
    - **--out_dir:**	The directory that will contain the evaluation result files
 
 You can perfom a test run using the following commands:
-cd TEST_DATA_SET/
 
+~~~~
+cd TEST_DATA_SET/
 perl ../bin/driver_evaluation.pl --method_dir ConsensusDriver/ --out_dir eval_result
+~~~~
 
 ------------------------
 
