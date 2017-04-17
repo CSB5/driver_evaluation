@@ -4,7 +4,7 @@ This repository contains scripts to evaluate cancer driver prediction methods an
 
 # Database containing cancer genomic data and driver predictions
 
-Evaluation datasets and predictions for the 18 different methods listed above. The database will automatically downloaded during the installation of the software (see below).
+Evaluation datasets and predictions for the 18 different methods listed above. The database will be automatically downloaded during the software installation (see below).
 The evaluation dataset is organized as follows:
 
 ### Genomic and transcriptomic data from 15 TCGA cancer types
@@ -44,7 +44,7 @@ The .result files for the different methods are provided for each cancer type. T
 
 - Download the latest version of the software and unzip it or `git clone https://github.com/CSB5/driver_evaluation.git`
 
-- Run the `./install.pl` command to install and download the required data.
+- Run the `./install.pl` command to install and download the required databases.
 
 # Evaluate new methods using the evaluation scripts
 
