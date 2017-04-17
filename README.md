@@ -1,18 +1,17 @@
 # Introduction
 
-This repository contains scripts to evaluate cancer driver prediction methods and compare them against predictions obtained from 18 different existing methods on 15 TCGA cancer types. For each cancer type, we provide ready to use genomic (point mutation and copy number alteration) and transcriptomic data. In addition, we provide a database containing results from the different driver prediction methods ([SIFT](http://sift.bii.a-star.edu.sg/), [PolyPhen2](http://genetics.bwh.harvard.edu/pph2/), [MutationTaster](http://www.mutationtaster.org/), [MutationAssessor](http://mutationassessor.org/r3/), [CHASM](http://wiki.chasmsoftware.org/index.php/CHASM_Overview), [transFIC](https://omictools.com/transformed-functional-impact-score-for-cancer-tool), [fathmm](http://fathmm.biocompute.org.uk/), [ActiveDriver](http://individual.utoronto.ca/reimand/ActiveDriver/), [MutSigCV](http://software.broadinstitute.org/cancer/software/genepattern/modules/docs/MutSigCV), [OncodriveCLUST](https://bitbucket.org/bbglab/oncodriveclust), [OncodriveFM](http://bg.upf.edu/group/projects/oncodrive-fm.php), [OncodriveCIS](http://bg.upf.edu/group/projects/oncodrive-cis.php), [S2N](http://www.maayanlab.net/S2N/)[NetBox](http://cbio.mskcc.org/downloads/), [HotNet2](http://compbio.cs.brown.edu/projects/hotnet2/), [DriverNet](http://driver-net.com/about), [DawnRank](http://bioen-compbio.bioen.illinois.edu/DawnRank/) and [OncoIMPACT](https://sourceforge.net/projects/oncoimpact/)). For further details see [Bertrand et al, 2017]. 
+This repository contains scripts to evaluate cancer driver prediction methods and compare them against predictions obtained from 18 different existing methods on 15 TCGA cancer types. For each cancer type, we provide ready to use genomic (point mutations and copy number variation) and transcriptomic data. In addition, we provide a database containing results from the different driver prediction methods ([SIFT](http://sift.bii.a-star.edu.sg/), [PolyPhen2](http://genetics.bwh.harvard.edu/pph2/), [MutationTaster](http://www.mutationtaster.org/), [MutationAssessor](http://mutationassessor.org/r3/), [CHASM](http://wiki.chasmsoftware.org/index.php/CHASM_Overview), [transFIC](https://omictools.com/transformed-functional-impact-score-for-cancer-tool), [fathmm](http://fathmm.biocompute.org.uk/), [ActiveDriver](http://individual.utoronto.ca/reimand/ActiveDriver/), [MutSigCV](http://software.broadinstitute.org/cancer/software/genepattern/modules/docs/MutSigCV), [OncodriveCLUST](https://bitbucket.org/bbglab/oncodriveclust), [OncodriveFM](http://bg.upf.edu/group/projects/oncodrive-fm.php), [OncodriveCIS](http://bg.upf.edu/group/projects/oncodrive-cis.php), [S2N](http://www.maayanlab.net/S2N/)[NetBox](http://cbio.mskcc.org/downloads/), [HotNet2](http://compbio.cs.brown.edu/projects/hotnet2/), [DriverNet](http://driver-net.com/about), [DawnRank](http://bioen-compbio.bioen.illinois.edu/DawnRank/) and [OncoIMPACT](https://sourceforge.net/projects/oncoimpact/)). For further details see [Bertrand et al, 2017]. 
 
 # Database containing cancer genomic data and driver predictions
 
-Evaluation datasets and predictions for the 18 different methods listed above can be downloaded here: ftp://ftp2.gis.a-star.edu.sg/ConsensusDriver/evaluation_data_set.tar.gz, and uncompressed with the following command:
-
-	tar -xvzf evaluation_data_set.tar.gz
+Evaluation datasets and predictions for the 18 different methods listed above. The database will automatically downloaded during the installation of the software (see below).
+The evaluation dataset is organized as follows:
 
 ### Genomic and transcriptomic data from 15 TCGA cancer types
 
-Point mutation and copy number alteration data for all cancer types was obtained from [GDAC](https://gdac.broadinstitute.org) via Firehose. Expression data for tumor and normal samples for all cancer types was downloaded from the [TCGA website](https://tcga-data.nci.nih.gov) (level 3). Samples for which the 3 data types were not available were excluded. 
+Point mutation and copy number variation data for all cancer types was obtained from [GDAC](https://gdac.broadinstitute.org) via Firehose. Expression data for tumor and normal samples for all cancer types was downloaded from the [TCGA website](https://tcga-data.nci.nih.gov) (level 3). Samples for which the 3 data types were not available were excluded. 
 
-The directory EVALUATION_DATA_SET/DATA contains the following files for each of the cancer types:
+The directory <EVALUATION_DATA_SET/DATA> contains the following files for each of the cancer types:
 
 - **GDAC_somatic_mutations.filtered.maf**     
 	File that contains point mutations in maf format
@@ -21,13 +20,13 @@ The directory EVALUATION_DATA_SET/DATA contains the following files for each of 
 - **CNA_matrix.txt**                          
 	Matrix (column: sample ID, row: gene name) where a cell is equal to 1 if the gene is part of a focal amplification, -1 if the gene is part of a focal deletion, 0 otherwise
 - **normalized_expression_matrix.txt**        
-	Matrix (column: sample ID, row: gene name) where a cell contains the normalized expression value obtained using DESeq
+	Matrix (column: sample ID, row: gene name) where a cell represents the normalized expression value obtained using DESeq
 - **differential_expression_matrix.txt**      
-	Matrix (column: sample ID, row: gene name) where a cell contains the fold change obtained using DESeq by comparing each tumor to a set of normal samples (see [Bertrand et al, 2017])
+	Matrix (column: sample ID, row: gene name) where a cell represents the fold change obtained using DESeq by comparing each tumor to a set of normal samples (see [Bertrand et al, 2017])
 
 ### Predictions from 18 methods on 15 cancer types
 
-The .result files for the different methods are provided for each cancer type. They can be found in the directory EVALUATION_DATA_SET/RESULT and are in the following unified format:
+The .result files for the different methods are provided for each cancer type. They can be found in <EVALUATION_DATA_SET/RESULT> and are in the following unified format:
 
 - **Gene_name:**     HUGO gene name 
 
@@ -45,40 +44,26 @@ The .result files for the different methods are provided for each cancer type. T
 
 - Download the latest version of the software and unzip it or `git clone https://github.com/CSB5/driver_evaluation.git`
 
-- In order to run the evaluation scripts the Perl module 'Config::Simple' is required. The module can be installed using the following command `cpan Config::Simple`
+- Run the `./install.pl` command to install and download the required data.
 
-# Evaluating new methods using the evaluation scripts
+# Evaluate new methods using the evaluation scripts
 
-1) Use the new method to analyze the data for the different cancer types 
+1) Analyze data for the different cancer types using the new method
 
-2) Convert the output file of the method into the unified result format defined above. The result files should be named according to the cancer type analysed with a '.result' extention (e.g. GBM.result) and organized in a single directory. The name of the directory will be used as the "method name" in the result files from the evaluation.
+2) Convert the output file of the method into the unified result format defined above. The result files should be named according to the cancer type analysed with a '.result' extention (e.g. GBM.result) and organized in a single directory. The name of the directory will be used as the method name in the evaluation result files.
 
-3) Run the evaluation script driver_evaluation.pl
+3) Run the evaluation script <driver_evaluation.pl> using the following options:
 
-	perl <path_to_script>/driver_evaluation.pl --config path_to/driver_evaluation.cfg
+- **--method_dir:**	Directory that contains the '.result' files of the evaluated method
 
-The config file can be used to set the following options:
+- **--out_dir:**	The directory that will contain the evaluation result files
 
-- **analysis_dir:**	The directory that contains the pre-computed predictions results
+You can perfom a test run using the following commands:
+cd TEST_DATA_SET/
 
-- **final_outdir:**	The directory that will contain the evaluation result files
+perl ../bin/driver_evaluation.pl --method_dir ConsensusDriver/ --out_dir eval_result
+------------------------
 
-- **script_dir:**	path to scripts directory
-
-- **method_dir:**	Directory that contains the '.result' files of the evaluated method
-
- ------------------------
-
-
-# Performing a test run
-1) Edit the `analysis_dir=` option in the file <driver_evaluation/TEST_DATA_SET/driver_evaluation.cfg> to indicate the path to EVALUATION_DATA_SET/RESULTS/.
-2) Run the evaluation as follows:
-
-cd path_to/driver_evaluation/TEST_DATA_SET/
-
-perl ../driver_evaluation.pl --config driver_evaluation.cfg
-
-You can find the results files in the directory: <path_to/driver_evaluation/TEST_DATA_SET/ConsensuDriverEvaluation>
 
 # Description of the evaluation result files
 ## Cohort level evaluation

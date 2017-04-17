@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 use warnings;
 use Config::Simple;
-use Getopt::Long;
+#use Getopt::Long;
 use POSIX 'strftime';
 use 5.010;
 
@@ -28,11 +28,11 @@ my $FLAG_PLOT_SAMPLE_ACTIONABLE_ANALYSIS =1;
 my $help_message = "
 
 Usage:
-        result_evaluation.pl [OPTIONS]
+        result_evaluation.pl <out_dir> <method_dir>
 
 Options:
-        --config: path to config file
-	--help: print this message
+    --out_dir: path to the evaluation result directory
+    --method_dir: path to the method prediction
 \n";
 
 if ( @ARGV == 0 ) {
@@ -41,20 +41,42 @@ if ( @ARGV == 0 ) {
 }
 
 my $configFile; my $flag_help;
-GetOptions(
-        "config=s" => \$configFile,
-        "help"       => \$flag_help
-) or die("Error in command line arguments.\n");
 
-if ($flag_help) {
-        print $help_message;
+my $index = 0;
+foreach my $argument (@ARGV){
+
+	if($argument eq "--out_dir"){
+		$final_out_dir = $ARGV[$index+1];
+	}
+	if($argument eq "--method_dir"){
+                $new_method_dir = $ARGV[$index+1];
+        }
+	$index++;
+}
+if(!defined($final_out_dir)){
+	print "Path to the evaluation result directory, not defined!\n";
+	exit 0;
+}
+if(!defined($new_method_dir)){
+        print "Path to the method prediction, not defined!\n";
         exit 0;
 }
 
-# Read config file
-print "Reading config file. Please wait...";
-Config::Simple->import_from( $configFile, \%config );
-print "done.\n";
+#print STDERR "result_evaluation.pl --out_dir $final_out_dir --method_dir $new_method_dir \n";
+
+#VARIABLES THAT THE PATH TO THE DATA AND SCRIPT
+#THOSE VARIABLE ARE INITIALAZED DURING THE INSTALLATION
+
+#my $analysis_dir = "/mnt/projects/bertrandd/opera_lg/kohjy_tmp/driver_evaluation_2/driver_evaluation/EVALUATION_DATA_SET/RESULTS";
+#my $script_dir   = "/mnt/projects/bertrandd/opera_lg/kohjy_tmp/driver_evaluation_2/driver_evaluation/bin";
+
+my $analysis_dir = "XX_ANALYSIS_DIR";
+my $script_dir   = "YY_SCRIPT_DIR";
+
+if($analysis_dir eq "XX_ANALYSIS_DIR" || $script_dir eq "YY_SCRIPT_DIR"){
+	print "Please run the installation script, install.pl !!\n";
+	exit 0;
+}
 
 #$FLAG_ANANLIZE_DATA_SET       =$config{'general.FLAG_ANANLIZE_DATA_SET'};
 #$FLAG_PLOT_SAMPLE_BASED_ANALYSIS       =$config{'general.FLAG_PLOT_SAMPLE_BASED_ANALYSIS'};
@@ -71,22 +93,17 @@ print "done.\n";
 #$FLAG_PLOT_SAMPLE_ACTIONABLE_ANALYSIS =$config{'general.FLAG_PLOT_SAMPLE_ACTIONABLE_ANALYSIS'};
 
 
-$analysis_dir       =$config{'general.analysis_dir'};
-$final_out_dir  =$config{'general.final_outdir'};
-$script_dir       =$config{'general.script_dir'};
-#
-$new_method_dir       =$config{'general.method_dir'};
 
 run_exe("mkdir $final_out_dir") unless (-d $final_out_dir);
 
-print STDERR " *** $new_method_dir\n";
+#print STDERR " *** $new_method_dir\n";
 opendir(DIR, $new_method_dir);
 my @all_cancer_type_prediction = readdir(DIR);
 close(DIR);
 
 my @tmp = split(/\//, $new_method_dir);
 my $additional_method_name = $tmp[@tmp-1];
-$method_name = $new_method_dir if(@tmp == 0);
+$additional_method_name = $new_method_dir if(@tmp == 0);
 
 #$selected_method_file    =config{'general.selected_method_file'}; 
 $selected_method_file    = "$final_out_dir/additional_method_name.txt";
@@ -217,21 +234,23 @@ if($selected_method_file ne "NONE"){
 
 <$fh>;
 while(<$fh>)  {   
-	 chomp $_;
-            my @line = split(/\s+/, $_);
-            print STDERR "!!!!! $line[0]\n";
-		push(@new_method, $line[0]);
-
+    chomp $_;
+    my @line = split(/\s+/, $_);
+    #print STDERR "!!!!! $line[0]\n";
+    push(@new_method, $line[0]);
 }
 close($fh);
 }
 
-foreach $data_set (@all_data_set){
 
+print STDERR " *** Analyse method results. Please wait ...\n";
+foreach $data_set (@all_data_set){
+	
     #next if($data_set eq "BRCA" || $data_set eq "UCEC");# || $data_set eq "LUSC");#Data set to exclude
     next if($data_set eq "UCEC");# || $data_set eq "LUSC");#Data set to exclude
      next if($data_set eq "." || $data_set eq ".." || $data_set =~ /^\./ );
 
+    print STDERR "\n";
     $data_set_result_dir = "$analysis_dir/$data_set";
     #run_exe("mkdir -p $data_set_result_dir");
     if(-e "$data_set_result_dir"){
@@ -250,6 +269,7 @@ foreach $data_set (@all_data_set){
  		run_exe("$script_dir/pair_wise_comparision.pl $data_set_result_dir $data_set_data_dir $out_dir ALL NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");#<STDIN>;
 		if($FLAG_COMPARISON_WITH_CANCER_GENE){
 		    #The Cancer plots
+		    print STDERR " *** Analyze cancer type, $data_set ...\n";
 		    run_exe("$script_dir/pair_wise_comparision.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_UNION NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");
 		    run_exe("$script_dir/pair_wise_comparision.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");
 		    run_exe("$script_dir/pair_wise_comparision.pl $data_set_result_dir $data_set_data_dir $out_dir CGC_CNA NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");
@@ -258,12 +278,14 @@ foreach $data_set (@all_data_set){
 		    #
 		    if($FLAG_PLOT_SHARED_METHOD_CALL){
 			#The data exluding the CHASM test data set
+			print STDERR " *** The data exluding the CHASM test data set ...\n";
 			run_exe("$script_dir/pair_wise_comparision.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_CHASM NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");
 			run_exe("$script_dir/pair_wise_comparision.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_NO_CS_CHASM NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");
 			run_exe("$script_dir/pair_wise_comparision.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_FP_CHASM NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");#<STDIN>;
 			run_exe("$script_dir/pair_wise_comparision.pl $data_set_result_dir $data_set_data_dir $out_dir NO_ANNOTATION_CHASM NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");
 			#
 			#fathmm
+			print STDERR " *** fathmm ...\n";
 			run_exe("$script_dir/pair_wise_comparision.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_fathmm NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");
 			run_exe("$script_dir/pair_wise_comparision.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_NO_CS_fathmm NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");#<STDIN>;
 			run_exe("$script_dir/pair_wise_comparision.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_FP_fathmm NO_PLOT NONE 1 NEW_RESULT $FLAG_ONLY_DRIVER_NUMBER $script_dir");#<STDIN>;
@@ -275,17 +297,20 @@ foreach $data_set (@all_data_set){
 	    }
 	    
 	    #Run the sample based analysis
+	    print STDERR " *** Run the sample based analysis ...\n";
 	    run_exe("$script_dir/sample_evaluation.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_UNION NONE 1 NEW_RESULT NO_PLOT $script_dir") if($FLAG_PLOT_SAMPLE_BASED_ANALYSIS && ($selected_method_file eq "NONE")) ;#<STDIN>;
 	    run_exe("$script_dir/sample_evaluation.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER_UNION $selected_method_file 1 APPEND_RESULT NO_PLOT $script_dir") if($FLAG_PLOT_SAMPLE_BASED_ANALYSIS && ($selected_method_file ne "NONE"));	   
  	
 	    #
-	    print STDERR "$FLAG_PLOT_SAMPLE_ACTIONABLE_ANALYSIS $selected_method_file\n";
+	    #print STDERR "$FLAG_PLOT_SAMPLE_ACTIONABLE_ANALYSIS $selected_method_file\n";
+	    print STDERR " *** Sample actionable gene ...\n";
 	    run_exe("$script_dir/sample_actionable_gene.pl $data_set_result_dir $data_set_data_dir $out_dir NONE 1 NEW_RESULT NO_PLOT $script_dir") if($FLAG_PLOT_SAMPLE_ACTIONABLE_ANALYSIS  && ($selected_method_file eq "NONE")) ;#<STDIN>;
             run_exe("$script_dir/sample_actionable_gene.pl $data_set_result_dir $data_set_data_dir $out_dir $selected_method_file 1 APPEND_RESULT NO_PLOT $script_dir") if($FLAG_PLOT_SAMPLE_ACTIONABLE_ANALYSIS  && ($selected_method_file ne "NONE"));
 
 	    #Run the concordance comparision analysis
 	    #run_exe("$script_dir/pair_wise_comparision.pl $data_set_result_dir $data_set_data_dir $out_dir CANCER NO_PLOT");
 	    if($FLAG_PLOT_CONCORDANCE_ANALYSIS){
+		print STDERR " *** Run the concordance comparision analysis ...\n";
 		run_exe("$script_dir/cancer_gene_concordance.pl $data_set_result_dir $data_set_data_dir CANCER_UNION $out_dir NO_PLOT NONE 1 NEW_RESULT $script_dir") if($selected_method_file eq "NONE");#<STDIN>;
 		run_exe("$script_dir/cancer_gene_concordance.pl $data_set_result_dir $data_set_data_dir CANCER_UNION $out_dir NO_PLOT $selected_method_file 1 APPEND_RESULT $script_dir") if($selected_method_file ne "NONE");
 	    }
@@ -549,11 +574,11 @@ if($FLAG_PLOT_CONCORDANCE_ANALYSIS){
 #For the plot that need the baseline data
 my $title = "";
 if($FLAG_PLOT_SAMPLE_BASED_ANALYSIS){
-    print STDERR " ***  ***|"."@tested_rank"."|\n";
+    #print STDERR " ***  ***|"."@tested_rank"."|\n";
     foreach $rank (@tested_rank_all){
 	#
 	$rank = 3 if($rank eq 50);
-	print STDERR " *** $rank ***\n";
+	#print STDERR " *** $rank ***\n";
 
 	$out_file = "$final_out_dir/sample_nb_driver_cat_RANK_$rank";
 	combined_sample_based_category("sample_nb_driver_cat_RANK_$rank.dat", $out_file.".dat") if($rank eq "ALL");
@@ -586,7 +611,7 @@ if($FLAG_PLOT_SAMPLE_BASED_ANALYSIS){
 }
 
 if($FLAG_PLOT_SAMPLE_ACTIONABLE_ANALYSIS){
-    print STDERR " ***  ***|"."@tested_rank"."|\n";
+    #print STDERR " ***  ***|"."@tested_rank"."|\n";
     my $dir_actionable_gene = "$final_out_dir/ACTIONABLE_GENE";
     my $out_file;
     run_exe("mkdir -p $dir_actionable_gene") if(! -d $dir_actionable_gene);
@@ -622,6 +647,8 @@ if($FLAG_PLOT_SAMPLE_ACTIONABLE_ANALYSIS){
 
 #Clean the result directory
 run_exe("rm $analysis_dir/*/$additional_method_name.result");
+run_exe("rm -r $analysis_dir/*/PLOT/");
+run_exe("rm -r $analysis_dir/*/GENE/");
 run_exe("rm $selected_method_file");
 
 sub combined_sample_actionable_gene{
@@ -694,52 +721,6 @@ sub combined_sample_actionable_gene{
             }
             print OUT "\n";
         }
-        close(OUT);
-    }
-
-    #Get the gene heat map fil
-    my %meth_pred = ();
-    my $evidance_type ;
-    my %actionable_sample = ();
-    foreach $g (@ACTIONABLE_GENE_STUDIED){
-        $best_gene_file = "$out_file\_$g";
-
-
-        $evidance_type = 0;
-        $evidance_type = 1 if($g eq "PIK3CA");
-        open(OUT, ">$best_gene_file.dat");
-        print OUT "".(join("\t", @METHOD_NAME))."\n";
-        %meth_pred = ();
-        for(my $cmp_data = 0; $cmp_data < @DATA_SET_ORDER; $cmp_data++){
-            $data_set = $DATA_SET_ORDER[$cmp_data];
-            print OUT $data_set;
-            foreach $m (@METHOD_ORDER){
-                $nb_sample = 0;
-                $nb_sample = $method_best_gene{$m}->{$g}->{$data_set} if(exists $method_best_gene{$m}->{$g}->{$data_set});
-                print OUT "\t".$nb_sample/$data_set_nb_sample{$data_set};
-                #
-                $meth_pred{$m} = 0 if(! exists $meth_pred{$m});
-                $meth_pred{$m} += $nb_sample;
-            }
-            print OUT "\n";
-        }
-        close(OUT);
-
-        open(OUT, ">$best_gene_file\_bar.dat");
-        print OUT "".(join("\t", @METHOD_NAME))."\n";
-                for(my $i = 0; $i <= 3; $i++){
-            print OUT $i;
-            foreach $m (@METHOD_ORDER){
-                if($i == $evidance_type){
-                    print OUT "\t".$meth_pred{$m};
-                }
-                else{
-                    print OUT "\t"."0";
-                }
-            }
-            print OUT "\n";
-        }
-
         close(OUT);
     }
 }
@@ -1008,7 +989,7 @@ sub combine_FP{
 sub combined_sample_based_PPV{
     ($file_type, $out_file) = @_;
 
-    print STDERR " *** combined_sample_based_precision\n";
+    #print STDERR " *** combined_sample_based_precision\n";
 
     open(OUT, ">$out_file");
     #Write the header
@@ -1083,7 +1064,7 @@ sub combined_sample_based_category{
         print OUT $cat;
         for(my $cmp_method = 0; $cmp_method < @METHOD_ORDER; $cmp_method++){
             $method = $METHOD_ORDER[$cmp_method];
-	    print STDERR $method." ->".$nb_sample_analysed[$cmp_method]."\n";
+	    #print STDERR $method." ->".$nb_sample_analysed[$cmp_method]."\n";
             print OUT "\t".(sprintf("%.4f",($method_res{$method}->{$cat}/$nb_sample_analysed[$cmp_method])));
         }
         print OUT "\n";
@@ -1201,10 +1182,7 @@ sub combine_sample_measure_file{
     #Construt the combine concordance evalutation file for each rank tested
     for(my $cmp_rank = 0; $cmp_rank < @rank_tested; $cmp_rank++){
 	if($rank_tested[$cmp_rank] eq "10" || $rank_tested[$cmp_rank] eq "50"){
-	if($file_type eq "CANCER_UNION_F1"){ 
-		print STDERR "$out_file\_$file_type\_RANK_".$rank_tested[$cmp_rank].".dat\n";
-	}
-
+	    
         open(OUT, ">$out_file\_$file_type\_RANK_".$rank_tested[$cmp_rank].".dat");
         print OUT "".join("\t", @{$specific_method_name})."\n";
 
@@ -1347,7 +1325,7 @@ sub plot_nb_call_box_plot{
 sub run_exe{
     my ($exe) = @_;
     $run = 1;
-    print STDERR $exe."\n";#<STDIN>;
+    #print STDERR $exe."\n";#<STDIN>;
     print STDERR `$exe` if($run);
 }
 
