@@ -73,24 +73,13 @@ if(!defined($new_method_dir)){
 my $analysis_dir = "XX_ANALYSIS_DIR";
 my $script_dir   = "YY_SCRIPT_DIR";
 
-if($analysis_dir eq "XX_ANALYSIS_DIR" || $script_dir eq "YY_SCRIPT_DIR"){
+
+if(index($analysis_dir, "XX_ANALYSIS") == 0 || index($script_dir, "YY_SCRIPT") == 0){
 	print "Please run the installation script, install.pl !!\n";
 	exit 0;
 }
 
-#$FLAG_ANANLIZE_DATA_SET       =$config{'general.FLAG_ANANLIZE_DATA_SET'};
-#$FLAG_PLOT_SAMPLE_BASED_ANALYSIS       =$config{'general.FLAG_PLOT_SAMPLE_BASED_ANALYSIS'};
-#$FLAG_PLOT_DRIVER_MUTATION_FREQUENCY       =$config{'general.FLAG_PLOT_DRIVER_MUTATION_FREQUENCY'};
-#$FLAG_PLOT_METHOD_COMPARISON_HEAT_MAP       =$config{'general.FLAG_PLOT_METHOD_COMPARISON_HEAT_MAP'};
-#$FLAG_COMPUTE_DRIVER_NUMBER          =$config{'general.FLAG_COMPUTE_DRIVER_NUMBER'};
-#$FLAG_COMPARISON_WITH_CANCER_GENE    =$config{'general.FLAG_COMPARISON_WITH_CANCER_GENE'};
-#$FLAG_PLOT_CONCORDANCE_ANALYSIS    =$config{'general.FLAG_PLOT_CONCORDANCE_ANALYSIS'};
-#$FLAG_PLOT_SHARED_METHOD_CALL    =$config{'general.FLAG_PLOT_SHARED_METHOD_CALL'};
-#$FLAG_ONLY_DRIVER_NUMBER    =$config{'general.FLAG_ONLY_DRIVER_NUMBER'};
-#$FLAG_ANALIZE_DOWNSAMPLING_DATA_SET   =$config{'general.FLAG_ANALIZE_DOWNSAMPLING_DATA_SET'};
-#$FLAG_ANALIZE_FP_DATA_SET   =$config{'general.FLAG_ANALIZE_FP_DATA_SET'};
-#$FLAG_PLOT_FP_RESULT   =$config{'general.FLAG_PLOT_FP_RESULT'};
-#$FLAG_PLOT_SAMPLE_ACTIONABLE_ANALYSIS =$config{'general.FLAG_PLOT_SAMPLE_ACTIONABLE_ANALYSIS'};
+#print STDERR " *** Pass\n";exit(0);
 
 
 
